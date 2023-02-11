@@ -32,6 +32,10 @@ For production mode
 
 Run the test cases.
 
+## Known issues
+- Global feed don't load after the cache is removed
+- NOTICE is not send to the right client
+
 ## Learn More
 
 To learn Fastify, check out the [Fastify documentation](https://www.fastify.io/docs/latest/).
