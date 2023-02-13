@@ -32,40 +32,9 @@ build/Release
 
 # Dependency directories
 node_modules
-jspm_packages
-
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
-
-# 0x
-profile-*
-
-# mac files
-.DS_Store
-
-# vim swap files
-*.swp
-
-# webstorm
-.idea
-
-# vscode
+build
+coverage
 .vscode
-*code-workspace
-
-# clinic
-profile*
-*clinic*
-*flamegraph*
-
-# generated code
-examples/typescript-server.js
-test/types/index.js
-
-# compiled app
-dist
-
+.DS_STORE
 .env
+tmp
