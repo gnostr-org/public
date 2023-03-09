@@ -106,9 +106,9 @@ NODE_ALIAS                             :=v16.14.0
 export NODE_ALIAS
 NVM_DIR                                :=$(HOME)/.nvm
 export NVM_DIR
-PACKAGE_MANAGER                        :=pnpm
+PACKAGE_MANAGER                        :=yarn
 export PACKAGE_MANAGER
-PACKAGE_INSTALL                        :=install
+PACKAGE_INSTALL                        :=add
 export PACKAGE_INSTALL
 
 
@@ -223,33 +223,14 @@ nvm: ## 	nvm
 clean-nvm: ## 	clean-nvm
 	@rm -rf ~/.nvm
 
-.PHONY: pnpm
-.ONESHELL:
 pnpm: ## 	pnpm
-	#curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=<version> sh -
 	@curl -fsSL https://get.pnpm.io/install.sh | ENV="$(HOME)/.bashrc" bash -
-
-.PHONY: clean
-.ONESHELL:
-clean: touch-time touch-global## 	clean
-	bash -c "rm -rf $(BUILDDIR)"
-
-.PHONY: serve
-.ONESHELL:
-serve:## 	serve
-	bash -c "$(PYTHON3) -m http.server $(PORT) -d . &"
-
-.PHONY: failure
-failure:
-	@-/usr/bin/false && ([ $$? -eq 0 ] && echo "success!") || echo "failure!"
-.PHONY: success
-success:
-	@-/usr/bin/true && ([ $$? -eq 0 ] && echo "success!") || echo "failure!"
-
--include venv.3.11.mk
--include venv.3.10.mk
--include venv.3.8.mk
--include venv.3.7.mk
+docker-proxy-stop:## 	proxy-stop
+	docker compose -f docker-compose.dev.yml stop
+docker-proxy-build:## 	proxy-build
+	docker compose -f docker-compose.dev.yml build #--no-cache
+docker-proxy-up:## 	proxy-up
+	docker compose -f docker-compose.dev.yml up
 -include yarn.mk
 # vim: set noexpandtab:
 # vim: set setfiletype make
