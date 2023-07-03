@@ -231,17 +231,17 @@ submodules:## 	submodules
 .ONESHELL:
 docker-start:
 ## docker-start
-	touch requirements.txt
+	touch requirements.txt && $(PYTHON3) -m ensurepip && $(PYTHON3) -m pip install -q -r requirements.txt
 	test -d .venv || $(PYTHON3) -m virtualenv .venv
 	( \
-	   source .venv/bin/activate; pip install -q -r requirements.txt; \
-	   pip install -q --upgrade pip; \
+	   source .venv/bin/activate; $(PYTHON3) -m pip install -q -r requirements.txt; \
+	   $(PYTHON3) -m pip install -q --upgrade pip; \
 	);
 	( \
 	    while ! docker system info > /dev/null 2>&1; do\
 	    echo 'Waiting for docker to start...';\
 	    if [[ '$(OS)' == 'Linux' ]]; then\
-	     systemctl restart docker.service;\
+	     type -P systemctl && systemctl restart docker.service || apk add openrc docker && rc-service docker restart;\
 	    fi;\
 	    if [[ '$(OS)' == 'Darwin' ]]; then\
 	     open --background -a /./Applications/Docker.app/Contents/MacOS/Docker;\

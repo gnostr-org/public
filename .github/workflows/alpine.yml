@@ -28,8 +28,7 @@ jobs:
           set-safe-directory: 'true'
       - run: make
       - run: make help
-      - run: make help
+      - run: make docker-start
       - run: make report
       - run: make submodules
       - run: make initialize
-      - run: make clean
