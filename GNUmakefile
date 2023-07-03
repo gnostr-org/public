@@ -267,7 +267,7 @@ venv-test:submodules## 	venv-3-10-test
 
 tag:## 	tag
 	@git tag $(OS)-$(OS_VERSION)-$(ARCH)-$(shell date +%s)
-	@git push -f --tags
+	@git push -f --tags || echo "unable to push tags..."
 
 clean:## 	clean
 	@git clean -xfd && git submodule foreach --recursive git clean -xfd && git reset --hard && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive
