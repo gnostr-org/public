@@ -20,15 +20,14 @@ jobs:
     container: alpine:${{ matrix.tag }}
 
     steps:
-      - run: |
-          apk update && apk add file git bash make python3 libtool autoconf automake libtool libc-dev
+      -  run: apk update && apk add file git bash make python3 libtool autoconf automake libtool libc-dev util-linux
       - uses: actions/checkout@v3
         with:
           fetch-depth: '0'
           submodules: 'true'
           set-safe-directory: 'true'
-      - run: |
-          apk update && apk add file git bash make python3 libtool autoconf automake libtool libc-dev
+      - run: make
+      - run: make help
       - run: |
           mkdir -p /usr/local
           mkdir -p /usr/local/bin

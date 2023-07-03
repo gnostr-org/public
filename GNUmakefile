@@ -46,10 +46,27 @@ export PIP
 export PIP3
 endif
 
-PYTHON_VENV                             := $(shell python -c "import sys; sys.stdout.write('1') if hasattr(sys, 'base_prefix') else sys.stdout.write('0')")
-PYTHON3_VENV                            := $(shell python3 -c "import sys; sys.stdout.write('1') if hasattr(sys, 'real_prefix') else sys.stdout.write('0')")
+#detect python
+PYTHON_ENV                              = $(shell python -c "import sys; sys.stdout.write('1')  if hasattr(sys, 'base_prefix') else sys.stdout.write('0')" 2>/dev/null)
+#detect python3
+PYTHON3_ENV                             = $(shell python3 -c "import sys; sys.stdout.write('1') if hasattr(sys, 'base_prefix') else sys.stdout.write('0')")
+export PYTHON_ENV
+export PYTHON3_ENV
+
+ifeq ($(PYTHON_ENV),1)
+#likely in virtualenv
+PYTHON_VENV                             := $(shell python -c "import sys; sys.stdout.write('1') if sys.prefix != sys.base_prefix else sys.stdout.write('0')" 2>/dev/null)
+endif
 export PYTHON_VENV
+
+ifeq ($(PYTHON_VENV),1)
+PYTHON3_VENV                            := $(shell python3 -c "import sys; sys.stdout.write('1') if sys.prefix != sys.base_prefix else sys.stdout.write('0')")
+else
+PYTHON_VENV                             :=$(PYTHON_ENV)
+PYTHON3_VENV                            :=$(PYTHON3_ENV)
+endif
 export PYTHON3_VENV
+
 ifeq ($(PYTHON_VENV),0)
 USER_FLAG                               :=--user
 else
@@ -66,16 +83,10 @@ export PROJECT_NAME
 GIT_USER_NAME                           := $(shell git config user.name || echo $(PROJECT_NAME))
 export GIT_USER_NAME
 GH_USER_NAME                            := $(shell git config user.name || echo $(PROJECT_NAME))
-GH_USER_REPO                            := $(GH_USER_NAME).github.io
-GH_USER_SPECIAL_REPO                    := $(GH_USER_NAME)
-KB_USER_REPO                            := $(GH_USER_NAME).keybase.pub
 ifneq ($(ghuser),)
 GH_USER_NAME := $(ghuser)
-GH_USER_SPECIAL_REPO := $(ghuser)/$(ghuser)
 endif
 export GIT_USER_NAME
-export GH_USER_REPO
-export GH_USER_SPECIAL_REPO
 
 GIT_USER_EMAIL                          := $(shell git config user.email || echo $(PROJECT_NAME))
 export GIT_USER_EMAIL
@@ -98,9 +109,6 @@ export GIT_REPO_NAME
 GIT_REPO_PATH                           := $(HOME)/$(GIT_REPO_NAME)
 export GIT_REPO_PATH
 
-BASENAME := $(shell type -P basename && basename -s .git `git config --get remote.origin.url` || echo $(PROJECT_NAME))
-export BASENAME
-
 NODE_VERSION                            :=v14.21.3
 export NODE_VERSION
 NODE_ALIAS                              :=v14.21.0
@@ -111,18 +119,6 @@ PACKAGE_MANAGER                         :=yarn
 export PACKAGE_MANAGER
 PACKAGE_INSTALL                         :=add
 export PACKAGE_INSTALL
-
-SPHINXOPTS                               =
-SPHINXBUILD                              = sphinx-build
-PAPER                                    =
-BUILDDIR                                 = _build
-PRIVATE_BUILDDIR                         = _private_build
-
-PAPEROPT_a4                              = -D latex_paper_size=a4
-PAPEROPT_letter                          = -D latex_paper_size=letter
-ALLSPHINXOPTS                            = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
-PRIVATE_ALLSPHINXOPTS                    = -d $(PRIVATE_BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
-I18NSPHINXOPTS                           = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 -:
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -175,10 +171,23 @@ report:## 	report
 	@echo 'TIME=${TIME}'
 	@echo 'BASENAME=${BASENAME}'
 	@echo 'PROJECT_NAME=${PROJECT_NAME}'
-	@echo 'MK3_VERSION=${MK3_VERSION}'
-	@echo 'MK4_VERSION=${MK4_VERSION}'
+	@echo ''
+	@echo 'PYTHON_ENV=${PYTHON_ENV}'
+	@echo 'PYTHON3_ENV=${PYTHON3_ENV}'
+	@echo ''
 	@echo 'PYTHON_VENV=${PYTHON_VENV}'
 	@echo 'PYTHON3_VENV=${PYTHON3_VENV}'
+	@echo ''
+	@echo 'PYTHON=${PYTHON}'
+	@echo 'PIP=${PIP}'
+	@echo 'PYTHON2=${PYTHON2}'
+	@echo 'PIP2=${PIP2}'
+	@echo 'PYTHON3=${PYTHON3}'
+	@echo 'PIP3=${PIP3}'
+	@echo ''
+	
+	
+
 	@echo 'HOMEBREW=${HOMEBREW}'
 	@echo ''
 	@echo 'GIT_USER_NAME=${GIT_USER_NAME}'
