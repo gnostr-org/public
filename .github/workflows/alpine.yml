@@ -20,16 +20,20 @@ jobs:
     container: alpine:${{ matrix.tag }}
 
     steps:
-      -  run: apk update && apk add file git bash make python3 libtool autoconf automake libtool libc-dev util-linux sed
+      ## notice: this is a pre checkout step
+      ## notice: additional operations can be done prior to checkout
+      - run: apk update && apk add file git bash make python3 libtool autoconf automake libtool libc-dev util-linux sed
       - uses: actions/checkout@v3
         with:
           fetch-depth: '0'
           submodules: 'true'
           set-safe-directory: 'true'
+      ## notice: these are post checkout steps
       - run: make
       - run: make help
       - run: make docker-start
       - run: make report
       - run: make submodules
       - run: make initialize
+      ## TODO: add ssh config to act sequence
       - run: make tag 2>/dev/null
