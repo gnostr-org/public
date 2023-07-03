@@ -1,33 +1,33 @@
-#PYTHON                                  := $(shell which python)
-#export PYTHON
-#PYTHON2                                 := $(shell which python2)
-#export PYTHON2
-#PYTHON3                                 := $(shell which python3)
-#export PYTHON3
-#
-#PIP                                     := $(shell which pip)
-#export PIP
-#PIP2                                    := $(shell which pip2)
-#export PIP2
-#PIP3                                    := $(shell which pip3)
-#export PIP3
-#
-#python_version_full := $(wordlist 2,4,$(subst ., ,$(shell python3 --version 2>&1)))
-#python_version_major := $(word 1,${python_version_full})
-#python_version_minor := $(word 2,${python_version_full})
-#python_version_patch := $(word 3,${python_version_full})
-#
-#my_cmd.python.3 := $(PYTHON3) some_script.py3
-#my_cmd := ${my_cmd.python.${python_version_major}}
-#
-#PYTHON_VERSION                         := ${python_version_major}.${python_version_minor}.${python_version_patch}
-#PYTHON_VERSION_MAJOR                   := ${python_version_major}
-#PYTHON_VERSION_MINOR                   := ${python_version_minor}
+PYTHON                                  := $(shell which python)
+export PYTHON
+PYTHON2                                 := $(shell which python2)
+export PYTHON2
+PYTHON3                                 := $(shell which python3)
+export PYTHON3
 
-#export python_version_major
-#export python_version_minor
-#export python_version_patch
-#export PYTHON_VERSION
+PIP                                     := $(shell which pip)
+export PIP
+PIP2                                    := $(shell which pip2)
+export PIP2
+PIP3                                    := $(shell which pip3)
+export PIP3
+
+python_version_full := $(wordlist 2,4,$(subst ., ,$(shell python3 --version 2>&1)))
+python_version_major := $(word 1,${python_version_full})
+python_version_minor := $(word 2,${python_version_full})
+python_version_patch := $(word 3,${python_version_full})
+
+my_cmd.python.3 := $(PYTHON3) some_script.py3
+my_cmd := ${my_cmd.python.${python_version_major}}
+
+PYTHON_VERSION                         := ${python_version_major}.${python_version_minor}.${python_version_patch}
+PYTHON_VERSION_MAJOR                   := ${python_version_major}
+PYTHON_VERSION_MINOR                   := ${python_version_minor}
+
+export python_version_major
+export python_version_minor
+export python_version_patch
+export PYTHON_VERSION
 
 venv-3-10:## 	venv-3-10
 ## venv-3-10

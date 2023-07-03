@@ -25,58 +25,35 @@ endif
 HOMEBREW                                := $(shell type -P brew)
 export HOMEBREW
 
-PYTHON                                  := $(shell which python || echo)
+PYTHON                                  := $(shell which python)
 export PYTHON
-#PYTHON2                                 := $(shell which python2 || echo)
-#export PYTHON2
-PYTHON3                                 := $(shell which python3 || echo)
-ifeq ($(PYTHON3),)
-PYTHON3                                 :=$(shell which python || echo)
-endif
+PYTHON2                                 := $(shell which python2)
+export PYTHON2
+PYTHON3                                 := $(shell which python3)
 export PYTHON3
 
-PIP                                     := $(notdir $(shell which pip || echo))
+PIP                                     := $(notdir $(shell which pip))
 export PIP
-PIP2                                    := $(notdir $(shell which pip2 || echo))
+PIP2                                    := $(notdir $(shell which pip2))
 export PIP2
-PIP3                                    := $(notdir $(shell which pip3 || echo))
-ifeq ($(PIP3),)
-PIP3                                    := $(notdir $(shell which pip || echo))
-endif
+PIP3                                    := $(notdir $(shell which pip3))
 export PIP3
 
-#ifeq ($(PYTHON3),/usr/local/bin/python3)
-#PIP                                    := pip
-#PIP3                                   := pip
-#export PIP
-#export PIP3
-#endif
-
-#detect python
-PYTHON_ENV                              = $(shell python -c "import sys; sys.stdout.write('1')  if hasattr(sys, 'base_prefix') else sys.stdout.write('0')" 2>/dev/null)
-#detect python3
-PYTHON3_ENV                             = $(shell python3 -c "import sys; sys.stdout.write('1') if hasattr(sys, 'base_prefix') else sys.stdout.write('0')")
-export PYTHON_ENV
-export PYTHON3_ENV
-
-ifeq ($(PYTHON_ENV),1)
-#likely in virtualenv
-PYTHON_VENV                             := $(shell python -c "import sys; sys.stdout.write('1') if sys.prefix != sys.base_prefix else sys.stdout.write('0')" 2>/dev/null)
+ifeq ($(PYTHON3),/usr/local/bin/python3)
+PIP                                    := pip
+PIP3                                   := pip
+export PIP
+export PIP3
 endif
+
+PYTHON_VENV                             := $(shell python -c "import sys; sys.stdout.write('1') if hasattr(sys, 'base_prefix') else sys.stdout.write('0')")
+PYTHON3_VENV                            := $(shell python3 -c "import sys; sys.stdout.write('1') if hasattr(sys, 'real_prefix') else sys.stdout.write('0')")
 export PYTHON_VENV
-
-ifeq ($(PYTHON_VENV),1)
-PYTHON3_VENV                            := $(shell python3 -c "import sys; sys.stdout.write('1') if sys.prefix != sys.base_prefix else sys.stdout.write('0')")
-else
-PYTHON_VENV                             :=$(PYTHON_ENV)
-PYTHON3_VENV                            :=$(PYTHON3_ENV)
-endif
 export PYTHON3_VENV
-
 ifeq ($(PYTHON_VENV),0)
 USER_FLAG                               :=--user
 else
-USER_FLAG                               :=
+USER_FLAG                               :=	
 endif
 
 ifeq ($(project),)
@@ -89,25 +66,16 @@ export PROJECT_NAME
 GIT_USER_NAME                           := $(shell git config user.name || echo $(PROJECT_NAME))
 export GIT_USER_NAME
 GH_USER_NAME                            := $(shell git config user.name || echo $(PROJECT_NAME))
+GH_USER_REPO                            := $(GH_USER_NAME).github.io
+GH_USER_SPECIAL_REPO                    := $(GH_USER_NAME)
+KB_USER_REPO                            := $(GH_USER_NAME).keybase.pub
 ifneq ($(ghuser),)
 GH_USER_NAME := $(ghuser)
+GH_USER_SPECIAL_REPO := $(ghuser)/$(ghuser)
 endif
 export GIT_USER_NAME
-ifneq ($(verbose),false)
-VERBOSE                                 := -v
-else
-VERBOSE                                 :=
-endif
-ifeq ($(reuse),true)
-REUSE                                   := -r
-else
-REUSE                                   :=
-endif
-ifeq ($(bind),true)
-BIND                                   := -b
-else
-BIND                                    :=
-endif
+export GH_USER_REPO
+export GH_USER_SPECIAL_REPO
 
 GIT_USER_EMAIL                          := $(shell git config user.email || echo $(PROJECT_NAME))
 export GIT_USER_EMAIL
@@ -130,9 +98,12 @@ export GIT_REPO_NAME
 GIT_REPO_PATH                           := $(HOME)/$(GIT_REPO_NAME)
 export GIT_REPO_PATH
 
-NODE_VERSION                           :=v16.20.1
+BASENAME := $(shell type -P basename && basename -s .git `git config --get remote.origin.url` || echo $(PROJECT_NAME))
+export BASENAME
+
+NODE_VERSION                            :=v14.21.3
 export NODE_VERSION
-NODE_ALIAS                             :=v16.20.0
+NODE_ALIAS                              :=v14.21.0
 export NODE_ALIAS
 NVM_DIR                                 :=$(HOME)/.nvm
 export NVM_DIR
@@ -140,6 +111,18 @@ PACKAGE_MANAGER                         :=yarn
 export PACKAGE_MANAGER
 PACKAGE_INSTALL                         :=add
 export PACKAGE_INSTALL
+
+SPHINXOPTS                               =
+SPHINXBUILD                              = sphinx-build
+PAPER                                    =
+BUILDDIR                                 = _build
+PRIVATE_BUILDDIR                         = _private_build
+
+PAPEROPT_a4                              = -D latex_paper_size=a4
+PAPEROPT_letter                          = -D latex_paper_size=letter
+ALLSPHINXOPTS                            = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+PRIVATE_ALLSPHINXOPTS                    = -d $(PRIVATE_BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+I18NSPHINXOPTS                           = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 -:
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -206,7 +189,6 @@ report:## 	report
 	@echo 'PYTHON3=${PYTHON3}'
 	@echo 'PIP3=${PIP3}'
 	@echo ''
-
 	@echo 'HOMEBREW=${HOMEBREW}'
 	@echo ''
 	@echo 'GIT_USER_NAME=${GIT_USER_NAME}'
@@ -231,7 +213,7 @@ ifneq ($(shell id -u),0)
 	sudo -s
 endif
 
-checkbrew:##
+checkbrew:##	
 ## checkbrew
 ifeq ($(HOMEBREW),)
 	@/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && $(MAKE) success || $(MAKE) failure
@@ -302,6 +284,18 @@ tag:
 	@git push -f --tags || echo "unable to push tags..."
 
 -include Makefile
+venv-test:submodules## 	venv-3-10-test
+	$(MAKE) -f $(PWD)/venv.mk venv-3-10-test
+
+tag:## 	tag
+	@git tag $(OS)-$(OS_VERSION)-$(ARCH)-$(shell date +%s)
+	@git push -f --tags
+
+clean:## 	clean
+	@git clean -xfd && git submodule foreach --recursive git clean -xfd && git reset --hard && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive
+	@if [[ -d $(PWD)/stm32/built ]]; then \
+		rm -rf $(PWD)/stm32/built/**.bin; fi;
+
 -include venv.mk
 -include act.mk
 
