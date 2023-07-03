@@ -9,7 +9,9 @@ macos-matrix:##
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vr -W $(PWD)/.github/workflows/$@.yml
 	
 	
-alpine:## 	
+alpine:## 	alpine act sequence
+## alpine act sequence
+## 	additional help example
 	@touch ~/GH_TOKEN.txt
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vb -W $(PWD)/.github/workflows/$@.yml
 archlinux:## 	
