@@ -32,7 +32,4 @@ jobs:
       - run: make report
       - run: make submodules
       - run: make initialize
-      - run: make venv
-      - run: make venv-test
-      - run: make tag
       - run: make clean
