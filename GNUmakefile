@@ -30,6 +30,9 @@ export PYTHON
 PYTHON2                                 := $(shell which python2)
 export PYTHON2
 PYTHON3                                 := $(shell which python3)
+ifeq ($(PYTHON3),)
+PYTHON3                                 :=$(shell which python)
+endif
 export PYTHON3
 
 PIP                                     := $(notdir $(shell which pip))
