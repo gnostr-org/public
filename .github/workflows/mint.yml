@@ -5,6 +5,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env:
+  GIT_DISCOVERY_ACROSS_FILESYSTEM: 1
 
 jobs:
   test:
@@ -20,7 +22,7 @@ jobs:
     steps:
       ## pre-checkout sequence
       - run: apt -y update
-      - run: apt -y install git file autoconf pkg-config  docker* gettext libtool
+      - run: apt -y install git python3 python3-pip file autoconf pkg-config gettext libtool docker* #we want to test 'make docker-start'
 
       - uses: actions/checkout@v3
         with:
