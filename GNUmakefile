@@ -25,21 +25,21 @@ endif
 HOMEBREW                                := $(shell type -P brew)
 export HOMEBREW
 
-PYTHON                                  := $(shell which python)
+PYTHON                                  := $(shell which python || echo)
 export PYTHON
-PYTHON2                                 := $(shell which python2)
-export PYTHON2
-PYTHON3                                 := $(shell which python3)
+#PYTHON2                                 := $(shell which python2 || echo)
+#export PYTHON2
+PYTHON3                                 := $(shell which python3 || echo)
 ifeq ($(PYTHON3),)
-PYTHON3                                 :=$(shell which python)
+PYTHON3                                 :=$(shell which python || echo)
 endif
 export PYTHON3
 
-PIP                                     := $(notdir $(shell which pip))
+PIP                                     := $(notdir $(shell which pip || echo))
 export PIP
-PIP2                                    := $(notdir $(shell which pip2))
+PIP2                                    := $(notdir $(shell which pip2 || echo))
 export PIP2
-PIP3                                    := $(notdir $(shell which pip3))
+PIP3                                    := $(notdir $(shell which pip3 || echo))
 export PIP3
 
 ifeq ($(PYTHON3),/usr/local/bin/python3)

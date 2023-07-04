@@ -13,7 +13,7 @@ alpine:docker-start## 	alpine act sequence
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vb  -W $(PWD)/.github/workflows/$@.yml
 archlinux:## 	
 	@touch ~/GH_TOKEN.txt
-	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vbr -W $(PWD)/.github/workflows/$@.yml
+	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vb  -W $(PWD)/.github/workflows/$@.yml
 centos:## 	
 	@touch ~/GH_TOKEN.txt
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vbr -W $(PWD)/.github/workflows/$@.yml

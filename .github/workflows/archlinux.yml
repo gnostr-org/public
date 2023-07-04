@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - run: pacman -Syy --noconfirm
-      - run: pacman -S   --noconfirm git file
+      - run: pacman -S   --noconfirm git file make python3 python-pip bash docker docker-compose which coreutils python-virtualenv
 
 
       ## pre-checkout sequence
