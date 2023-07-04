@@ -38,11 +38,11 @@ macos:##
 manjaro:## 	
 	@touch ~/GH_TOKEN.txt
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vbr -W $(PWD)/.github/workflows/$@.yml
-mint:##		mint act sequence
+mint:docker-start##		mint act sequence
 ## mint act sequence
 ## 	additional help example
 	@touch ~/GH_TOKEN.txt
-	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vbr -W $(PWD)/.github/workflows/$@.yml
+	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vb  -W $(PWD)/.github/workflows/$@.yml
 msys2:## 	
 	@touch ~/GH_TOKEN.txt
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vbr -W $(PWD)/.github/workflows/$@.yml

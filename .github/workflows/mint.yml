@@ -18,8 +18,8 @@ jobs:
     container: linuxmintd/mint${{ matrix.tag }}-amd64
 
     steps:
+      ## pre-checkout sequence
       - run: apt -y update
-      - run: apt -y install gcc make pkg-config autoconf automake python3-docutils libseccomp-dev libjansson-dev libyaml-dev libxml2-dev
       - run: apt -y install git file autoconf pkg-config  docker* gettext libtool
 
       - uses: actions/checkout@v3
@@ -28,6 +28,7 @@ jobs:
           submodules: 'true'
           set-safe-directory: 'true'
 
+      ## post-checkout sequence
       - run: make
       - run: make help
       - run: make docker-start
@@ -35,12 +36,17 @@ jobs:
       - run: make submodules
       - run: make initialize
 
-      - run:  if [ ! -d ctags ]; then git clone https://github.com/universal-ctags/ctags; fi
-      - run: install autogen.sh ctags
-      - run: cd ctags && ./autogen.sh configure
-      - run: cd ctags && ./configure --prefix=/usr
-      - run: cd ctags && make
-      - run: cd ctags && make install
-      - run: file /usr/bin/ctags
-      - run: /usr/bin/ctags --version
+      ## build example
+      #- run:  if [ ! -d ctags ]; then git clone https://github.com/universal-ctags/ctags; fi
+      #- run: apt -y install gcc make pkg-config autoconf automake python3-docutils libseccomp-dev libjansson-dev libyaml-dev libxml2-dev
+      #- run: install autogen.sh ctags
+      #- run: cd ctags && ./autogen.sh configure
+      #- run: cd ctags && ./configure --prefix=/usr
+      #- run: cd ctags && make
+      #- run: cd ctags && make install
+      #- run: file /usr/bin/ctags
+      #- run: /usr/bin/ctags --version
+
+      ## sequence success!!
+      - run: make tag 2>/dev/null
 
