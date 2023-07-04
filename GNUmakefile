@@ -231,9 +231,9 @@ submodules:## 	submodules
 .ONESHELL:
 docker-start:
 ## docker-start
-	touch requirements.txt && $(PYTHON3) -m ensurepip && $(PYTHON3) -m pip install -q -r requirements.txt
-	test -d .venv || $(PYTHON3) -m virtualenv .venv
-	( \
+	@touch requirements.txt && $(PYTHON3) -m pip install -q -r requirements.txt
+	@test -d .venv || $(PYTHON3) -m virtualenv .venv
+	@( \
 	   source .venv/bin/activate; $(PYTHON3) -m pip install -q -r requirements.txt; \
 	   $(PYTHON3) -m pip install -q --upgrade pip; \
 	);
@@ -241,7 +241,8 @@ docker-start:
 	    while ! docker system info > /dev/null 2>&1; do\
 	    echo 'Waiting for docker to start...';\
 	    if [[ '$(OS)' == 'Linux' ]]; then\
-	     type -P systemctl && systemctl restart docker.service || apk add openrc docker && rc-service docker restart;\
+	    type -P apt && apt install docker*;\
+	    type -P systemctl && systemctl restart docker.service || type -P service && service docker.service restart || type -P apk &&  apk add openrc docker && rc-service docker restart || echo "try installing docker manually...";\
 	    fi;\
 	    if [[ '$(OS)' == 'Darwin' ]]; then\
 	     open --background -a /./Applications/Docker.app/Contents/MacOS/Docker;\
