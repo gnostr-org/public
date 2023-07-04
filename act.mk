@@ -6,11 +6,11 @@ macos-matrix:##
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vr -W $(PWD)/.github/workflows/$@.yml
 	
 	
-alpine:## 	alpine act sequence
+alpine:docker-start## 	alpine act sequence
 ## alpine act sequence
 ## 	additional help example
 	@touch ~/GH_TOKEN.txt
-	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vb -W $(PWD)/.github/workflows/$@.yml
+	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vb  -W $(PWD)/.github/workflows/$@.yml
 archlinux:## 	
 	@touch ~/GH_TOKEN.txt
 	@export $(cat ~/GH_TOKEN.txt) && act -C $(PWD) -vbr -W $(PWD)/.github/workflows/$@.yml
