@@ -73,7 +73,7 @@ export PYTHON3_VENV
 ifeq ($(PYTHON_VENV),0)
 USER_FLAG                               :=--user
 else
-USER_FLAG                               :=	
+USER_FLAG                               :=
 endif
 
 ifeq ($(project),)
@@ -112,16 +112,19 @@ export GIT_REPO_NAME
 GIT_REPO_PATH                           := $(HOME)/$(GIT_REPO_NAME)
 export GIT_REPO_PATH
 
-NODE_VERSION                            :=v14.21.3
+NODE_VERSION                            :=v16.14.2
 export NODE_VERSION
-NODE_ALIAS                              :=v14.21.0
+NODE_ALIAS                              :=v16.14.0
 export NODE_ALIAS
 NVM_DIR                                 :=$(HOME)/.nvm
 export NVM_DIR
-PACKAGE_MANAGER                         :=yarn
-export PACKAGE_MANAGER
-PACKAGE_INSTALL                         :=add
-export PACKAGE_INSTALL
+PNPM_VERSION                            :=8.6.7
+export PNPM_VERSION
+
+#PACKAGE_MANAGER                         :=yarn
+#export PACKAGE_MANAGER
+#PACKAGE_INSTALL                         :=add
+#export PACKAGE_INSTALL
 
 -:
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -164,7 +167,12 @@ init:initialize venv##	initialize venv
 help:## 	verbose help
 	@sed -n 's/^## //p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
 
-
+pnpm:nvm
+	npm i --global @adonisjs/cli
+	npm i --global @adonisjs/core
+	curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=$(PNPM_VERSION) sh - && \
+    pnpm run dev &
+run:pnpm## 	node-proxy
 .PHONY: report
 report:## 	report
 ## report
@@ -187,6 +195,10 @@ report:## 	report
 	@echo 'PIP2=${PIP2}'
 	@echo 'PYTHON3=${PYTHON3}'
 	@echo 'PIP3=${PIP3}'
+	@echo ''
+	@echo 'NODE_VERSION=${NODE_VERSION}'
+	@echo 'NODE_ALIAS=${NODE_ALIAS}'
+	@echo 'PNPM_VERSION=${PNPM_VERSION}'
 	@echo ''
 	@echo 'HOMEBREW=${HOMEBREW}'
 	@echo ''
@@ -212,7 +224,7 @@ ifneq ($(shell id -u),0)
 	sudo -s
 endif
 
-checkbrew:##	
+checkbrew:##
 ## checkbrew
 ifeq ($(HOMEBREW),)
 	@/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && $(MAKE) success || $(MAKE) failure
@@ -259,18 +271,11 @@ failure:
 success:
 	@-/usr/bin/true && ([ $$? -eq 0 ] && echo "success!") || echo "failure!"
 
-venv:submodules## 	python3.10 virtualenv
-	$(MAKE) -f $(PWD)/venv.mk venv-3-10
-venv-install:submodules## 	install python3.10
-	$(MAKE) -f $(PWD)/venv.mk venv-3-10-install
-venv-test:submodules## 	venv-3-10-test
-	$(MAKE) -f $(PWD)/venv.mk venv-3-10-test
-
 .PHONY: nvm
 .ONESHELL:
 nvm: ## 	nvm
 	@curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash || git pull -C $(HOME)/.nvm && export NVM_DIR="$(HOME)/.nvm" && [ -s "$(NVM_DIR)/nvm.sh" ] && \. "$(NVM_DIR)/nvm.sh" && [ -s "$(NVM_DIR)/bash_completion" ] && \. "$(NVM_DIR)/bash_completion"  && nvm install $(NODE_VERSION) && nvm use $(NODE_VERSION)
-	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION)
+	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION) &
 
 clean-nvm: ## 	clean-nvm
 	@rm -rf ~/.nvm
@@ -283,20 +288,8 @@ tag:
 	@git push -f --tags || echo "unable to push tags..."
 
 -include Makefile
-venv-test:submodules## 	venv-3-10-test
-	$(MAKE) -f $(PWD)/venv.mk venv-3-10-test
-
-tag:## 	tag
-	@git tag $(OS)-$(OS_VERSION)-$(ARCH)-$(shell date +%s)
-	@git push -f --tags || echo "unable to push tags..."
-
-clean:## 	clean
-	@git clean -xfd && git submodule foreach --recursive git clean -xfd && git reset --hard && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive
-	@if [[ -d $(PWD)/stm32/built ]]; then \
-		rm -rf $(PWD)/stm32/built/**.bin; fi;
-
 -include venv.mk
 -include act.mk
 
-# vim: set noexpandtab:
+# vim: set noexpandtab
 # vim: set setfiletype make

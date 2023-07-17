@@ -4,3 +4,6 @@
 	branch = master
 	shallow = true
 	ignore = dirty
+[submodule "pnpm"]
+	path = pnpm
+	url = https://github.com/pnpm/pnpm.git

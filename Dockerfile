@@ -1,7 +1,9 @@
 ARG NODE_IMAGE=node:16.13.1-alpine
 
+ARG PNPM_VERSION=v6.16.0
+ENV PNPM_VERSION=v6.16.0
 FROM $NODE_IMAGE AS base
-RUN apk --no-cache add dumb-init curl python3 make gcc g++
+RUN apk --no-cache add dumb-init curl python3 make gcc g++ git make
 RUN mkdir -p /home/node/app && chown node:node /home/node/app
 WORKDIR /home/node/app
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm

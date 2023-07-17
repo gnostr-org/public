@@ -38,3 +38,4 @@ coverage
 .DS_STORE
 .env
 tmp
+.pnpm-store

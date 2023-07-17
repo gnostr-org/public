@@ -1,12 +1,11 @@
 !*akefile
-!.git
 # Adonis default .gitignore ignores
-node_modules
+!node_modules
 build
 coverage
 .vscode
 .DS_STORE
-.env
+!.env
 tmp
 
 # Additional .gitignore ignores (any custom file you wish)
