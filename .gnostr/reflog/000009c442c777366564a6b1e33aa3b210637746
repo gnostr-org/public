@@ -1,0 +1,98 @@
+wss://{RELAY}/{REPO}/191433112ac7b384ade6b6bcceb8239a2f92d899/HEAD@{0}:commit:make: nostr-proxy
+wss://{RELAY}/{REPO}/191433112ac7b384ade6b6bcceb8239a2f92d899/HEAD@{1}:commit:make: nostr-proxy
+wss://{RELAY}/{REPO}/32ec2d4044835cb3611836ea75d1910decf259ef/HEAD@{2}:commit:nuke-docker: act CI in act CI
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{3}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/b9adeaabcc64bcf0d745eb1955c48478869487ff/HEAD@{4}:commit:chore: add README and LICENSE
+wss://{RELAY}/{REPO}/849b94fe10246688b067484546a5fd7e2538eb0c/HEAD@{5}:commit:chore: Init Nostr Proxy
+wss://{RELAY}/{REPO}/546d01b6ab00f16aef3ec323b7805496112c9911/HEAD@{6}:commit:make: alpine help example
+wss://{RELAY}/{REPO}/5e5d9d9f2c9d256796e9394672b746ac97a959e2/HEAD@{7}:commit:.github/workflows/alpine.yml: pre and post checkout notes
+wss://{RELAY}/{REPO}/79c871c860b4042317a6aa2642c4e1251fd25874/HEAD@{8}:commit:.github/workflows/alpine.yml: make tag
+wss://{RELAY}/{REPO}/d8954800f369cab230c3d06d24f6d2519f55ce22/HEAD@{9}:commit:make: docker-start - add alpine support
+wss://{RELAY}/{REPO}/7dfab4c932a9828dad3e8f42a102826408f34ce0/HEAD@{10}:commit: .github/workflows/alpine.yml: make sequence
+wss://{RELAY}/{REPO}/2d2cd68a9cce2b3e6aa67f4af5efb09db705eaa7/HEAD@{11}:commit:make: ifeq ($(PYTHON3),)...
+wss://{RELAY}/{REPO}/0cc70ef9df30a9d234144cfab93be4c719888ca1/HEAD@{12}:commit:make: alpine
+wss://{RELAY}/{REPO}/bb9a2f541051a8d9ae09dc96dbfd635aa4c3a63e/HEAD@{13}:commit:make-help: initial commit
+wss://{RELAY}/{REPO}/671ffb87592a73bd98dec17d827395a81c26b39e/HEAD@{14}:commit:make: nvm tag venv
+wss://{RELAY}/{REPO}/a612cf2a538beb2cb3175e3281fa0565361d952a/HEAD@{15}:commit:GNUmakefile: .github/workflows/push.yml: node -v v0.16.21
+wss://{RELAY}/{REPO}/17d78f76d811a9ad167edc84379aafe44216df61/HEAD@{16}:commit:GNUmakefile: clean up
+wss://{RELAY}/{REPO}/27a635812a12cfded3ee13daf8e5610c1530ce90/HEAD@{17}:commit:GNUmakefile: clean up
+wss://{RELAY}/{REPO}/b4d59a11ba6190d961617ae0b65825067c5a2746/HEAD@{18}:commit:GNUmakefile: clean up
+wss://{RELAY}/{REPO}/dd9e1cab519d19a23611403c5098e49a66adab54/HEAD@{19}:commit:GNUmakefile: clean up
+wss://{RELAY}/{REPO}/437e5c2f4c048a4a70422b4021398bbfc5608580/HEAD@{20}:commit:GNUmakefile: clean up
+wss://{RELAY}/{REPO}/33cdc45cecdeed6f83fdb67552c835d4eb230006/HEAD@{21}:commit:.gitignore: add node-app-template
+wss://{RELAY}/{REPO}/30e32af3a6248fdba1d3468a772416c8d425bbe0/HEAD@{22}:commit:.github/workflows/push.yml: use node-app-template
+wss://{RELAY}/{REPO}/8f093ecc603a19cee3e420987ac5d2137549e91d/HEAD@{23}:commit:make: push
+wss://{RELAY}/{REPO}/c7576075416379ba9c8fb73612704278df259ebc/HEAD@{24}:commit:.dockerignore: /# do NOT ignore .git folder #/
+wss://{RELAY}/{REPO}/c3f902e422561b10dafecd1a55b56259c5903e2a/HEAD@{25}:commit:.github/workflows/push.yml: use actions/checkout@v2
+wss://{RELAY}/{REPO}/7ab6ecbac6c60fa8224daab81aeb43e7a2c5cfb0/HEAD@{26}:commit:.github/workflows/push.yml: comment out second make docker-start
+wss://{RELAY}/{REPO}/123f2bdd659ce59d2d1411e51bf0a5a9d4a6905a/HEAD@{27}:commit:make: docker-start: add docker pull catthehacker/ubuntu:act-latest;\
+wss://{RELAY}/{REPO}/558c11aed39081be75a28ba0a4e571bb4de2e866/HEAD@{28}:commit:nuke-docker: act CI in act CI
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{29}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{30}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{31}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{32}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{33}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{34}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{35}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/07c458bddf2865cebc2a9d30b539e72f32953324/HEAD@{36}:commit:make: node-proxy
+wss://{RELAY}/{REPO}/8055dfd0a6b1b3ec31f302928a2c14dcab02bf5c/HEAD@{37}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/7cb24c8a0a094d6137692dc28cf5096c8d023c07/HEAD@{38}:commit:make:docker-compsose
+wss://{RELAY}/{REPO}/7cb24c8a0a094d6137692dc28cf5096c8d023c07/HEAD@{39}:commit:make:docker-compsose
+wss://{RELAY}/{REPO}/e5b0e6e5aea6a6eb2562bc5bbf7c2a337bdb9e29/HEAD@{40}:commit:make: nvm - use node v16.13.1
+wss://{RELAY}/{REPO}/7f0c594ccaed9f877891b1f305e2a097f32bdb16/HEAD@{41}:commit:GNUmakefile: fix up
+wss://{RELAY}/{REPO}/8055dfd0a6b1b3ec31f302928a2c14dcab02bf5c/HEAD@{42}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/8055dfd0a6b1b3ec31f302928a2c14dcab02bf5c/HEAD@{43}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/7f5a3f3e41ffe980a41f0e2f50df923da47e318e/HEAD@{44}:commit:fix: memory leak (#10)
+wss://{RELAY}/{REPO}/ae0fc72696c79a5b9ba233e8f611adc90bf730aa/HEAD@{45}:commit:Fix footer (#13)
+wss://{RELAY}/{REPO}/3ea9631c166a40a6994daccb80a9a7e117cac653/HEAD@{46}:commit:feat: add a stats page (#9)
+wss://{RELAY}/{REPO}/271c3938ebf9aeccf79aea86c5ba8a2e29656652/HEAD@{47}:commit:chore: new project structure (#8)
+wss://{RELAY}/{REPO}/f286c8f6935c0cd8e6ca7bfb32be36e989520b01/HEAD@{48}:commit:style: remove console.log (#6)
+wss://{RELAY}/{REPO}/5fadde84532e6bc18fbcc6dfdddd7c37dfded180/HEAD@{49}:commit:feat: add Redis as cache (#5)
+wss://{RELAY}/{REPO}/06538009cdc0fea24d8377c67e0e1a3b1694f2ea/HEAD@{50}:commit:fix: error handler + fix parsing event when NOTICE
+wss://{RELAY}/{REPO}/07363b0cf651cda6f48fc2cbd3e4a04fae7b758c/HEAD@{51}:commit:fix: push note
+wss://{RELAY}/{REPO}/95f9ff8d50a059be50fd53c7f2b9852acb94f227/HEAD@{52}:commit:fix: trying to fix WS Pool not ready
+wss://{RELAY}/{REPO}/593932f83860f3c34654870ce12ea1f1e43cab59/HEAD@{53}:commit:refactor: broadcast events to the right person
+wss://{RELAY}/{REPO}/3ffe0b91891babb8fe8fffe3601feeffb3c2f82c/HEAD@{54}:commit:feat: fix broadcast events to the right client (refacto needed)
+wss://{RELAY}/{REPO}/3ad83e41258a8d67ed6c029175dd6ef275272352/HEAD@{55}:commit:style: add tip
+wss://{RELAY}/{REPO}/0e446a04b71150a38ab2364525c9e499da0c2198/HEAD@{56}:commit:build: remove unused deps
+wss://{RELAY}/{REPO}/b757d17758d100926a2f17b089fc433840dcca36/HEAD@{57}:commit:feat: add small cache to not send an event X times coming from X relays
+wss://{RELAY}/{REPO}/d2c370fac83e86b42aa4caa9770a03e8edf55533/HEAD@{58}:commit:chore: add README and LICENSE
+wss://{RELAY}/{REPO}/9a11633ddc8492ef99ed9ee72c924ea05109daf4/HEAD@{59}:commit:chore: Init Nostr Proxy
+wss://{RELAY}/{REPO}/4b198ea06cbae0fe26d661c144febec4500c636f/HEAD@{60}:commit:make: alpine help example
+wss://{RELAY}/{REPO}/47b07bb6ed2aa5499a90899306e81bccd6b568a1/HEAD@{61}:commit:.github/workflows/alpine.yml: pre and post checkout notes
+wss://{RELAY}/{REPO}/e1570d60833947b0ff57a7f944909693d0ea7031/HEAD@{62}:commit:.github/workflows/alpine.yml: make tag
+wss://{RELAY}/{REPO}/705050ff02848e748f2a061faccff9bf2a0c6fec/HEAD@{63}:commit:make: docker-start - add alpine support
+wss://{RELAY}/{REPO}/b0021f875d931c841558585583dba7d7d8ff82e4/HEAD@{64}:commit: .github/workflows/alpine.yml: make sequence
+wss://{RELAY}/{REPO}/173fc77ab97357dc255e8a536404e8a34dfcb0a0/HEAD@{65}:commit:make: ifeq ($(PYTHON3),)...
+wss://{RELAY}/{REPO}/d0be27c155f8bef4f0c594225dd92e49907d925d/HEAD@{66}:commit:make: alpine
+wss://{RELAY}/{REPO}/bd4b59dcd2fceea528680e18b294d1745bbef712/HEAD@{67}:commit:make-help: initial commit
+wss://{RELAY}/{REPO}/547a64f835354a127629e094200d31f39bd75eb4/HEAD@{68}:commit:make: nvm tag venv
+wss://{RELAY}/{REPO}/12fd78d13b370a5dc5e9b0afc5c98729183bc3c7/HEAD@{69}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/12fd78d13b370a5dc5e9b0afc5c98729183bc3c7/HEAD@{70}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/de371e036ee56741b30308c867192101bf35239e/HEAD@{71}:commit:fix: memory leak (#10)
+wss://{RELAY}/{REPO}/b39678cb913ddea0572b1762a1c7afc7aa5bbf26/HEAD@{72}:commit:Fix footer (#13)
+wss://{RELAY}/{REPO}/3ed9c593d6c9da0265318382061ecee91b102b35/HEAD@{73}:commit:feat: add a stats page (#9)
+wss://{RELAY}/{REPO}/e6b65f642f511943841afdc20fabe4663a461e9e/HEAD@{74}:commit:chore: new project structure (#8)
+wss://{RELAY}/{REPO}/a46659304c7e41b054f6822a3035d336b342cb1e/HEAD@{75}:commit:style: remove console.log (#6)
+wss://{RELAY}/{REPO}/70c1d9dc1ca01d885de5f870071de50be296247a/HEAD@{76}:commit:feat: add Redis as cache (#5)
+wss://{RELAY}/{REPO}/aa5f0de4e03bc2189ebe000ccded78dd33d21643/HEAD@{77}:commit:fix: error handler + fix parsing event when NOTICE
+wss://{RELAY}/{REPO}/ca7f812e74f48aaf3983b30f615864c1e27f7073/HEAD@{78}:commit:fix: push note
+wss://{RELAY}/{REPO}/a5ad5433e908e2773a46c9b2052b6ec98774c632/HEAD@{79}:commit:fix: trying to fix WS Pool not ready
+wss://{RELAY}/{REPO}/a5cadb4b58b60f7f43c2e972324ddae03207030d/HEAD@{80}:commit:refactor: broadcast events to the right person
+wss://{RELAY}/{REPO}/eb6748e5b3d237195b5854fd3c5d094f3452a37b/HEAD@{81}:commit:feat: fix broadcast events to the right client (refacto needed)
+wss://{RELAY}/{REPO}/d0be152328c12f847f63d3a122dfe8e40838afbd/HEAD@{82}:commit:style: add tip
+wss://{RELAY}/{REPO}/37678f5743ac075e3db5b0645557dbd2d8676239/HEAD@{83}:commit:build: remove unused deps
+wss://{RELAY}/{REPO}/09a1cc6f9d0787b600dae7eed7bb7bc2393a2acb/HEAD@{84}:commit:feat: add small cache to not send an event X times coming from X relays
+wss://{RELAY}/{REPO}/0f2c72199e978ee1bf736415157af7614f816001/HEAD@{85}:commit:chore: add README and LICENSE
+wss://{RELAY}/{REPO}/a3be725953aecc497a65163fe6b8fab484844ae2/HEAD@{86}:commit:chore: Init Nostr Proxy
+wss://{RELAY}/{REPO}/75fa88a0ec43b2653c1314d525e8569307e3fd3d/HEAD@{87}:commit:make: alpine help example
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{88}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/75fa88a0ec43b2653c1314d525e8569307e3fd3d/HEAD@{89}:commit:make: alpine help example
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{90}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{91}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{92}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/46982fe7e7151caa4600631d58886e79fa468669/HEAD@{93}:commit:make: docker-proxy-* commands
+wss://{RELAY}/{REPO}/bbdbb3f4182c20092c2637895aa0c17d99235dff/HEAD@{94}:commit:make: init config
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{95}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{96}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
+wss://{RELAY}/{REPO}/26d6d96d5bcb9a7f9e498f292881beb997199dbc/HEAD@{97}:commit:fix: disable cron. nostr-relaypool already do auto reconnect (#18)
