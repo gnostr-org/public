@@ -167,11 +167,11 @@ init:initialize venv##	initialize venv
 help:## 	verbose help
 	@sed -n 's/^## //p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
 
+.PHONY:pnpm
 pnpm:nvm
-	npm i --global @adonisjs/cli
-	npm i --global @adonisjs/core
-	curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=$(PNPM_VERSION) sh - && \
-    pnpm run dev &
+	npm i --global yarn
+	npm i --global pnpm
+	@pnpm install && pnpm run dev &
 run:pnpm## 	node-proxy
 .PHONY: report
 report:## 	report
