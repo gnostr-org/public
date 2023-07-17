@@ -173,6 +173,7 @@ pnpm:nvm
 	npm i --global pnpm
 	@pnpm install && pnpm run dev &
 run:pnpm## 	node-proxy
+	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
 .PHONY: report
 report:## 	report
 ## report
