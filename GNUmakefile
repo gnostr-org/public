@@ -172,8 +172,8 @@ pnpm:nvm
 	npm i --global yarn
 	npm i --global pnpm
 	@pnpm install reflect-metadata
-	@pnpm install && pnpm run dev &
-run:pnpm## 	node-proxy
+	@pnpm install && pnpm run dev #&
+run:pnpm## 	gnostr-proxy
 	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
 .PHONY: report
 report:## 	report
