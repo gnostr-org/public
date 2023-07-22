@@ -112,6 +112,10 @@ export GIT_REPO_NAME
 GIT_REPO_PATH                           := $(HOME)/$(GIT_REPO_NAME)
 export GIT_REPO_PATH
 
+RELAYS                                  =$(shell curl  'https://api.nostr.watch/v1/online' 2>/dev/null | tr -d '[]')
+export RELAYS
+
+
 NODE_VERSION                            :=v16.14.2
 export NODE_VERSION
 NODE_ALIAS                              :=v16.14.0
@@ -166,7 +170,18 @@ init:initialize venv##	initialize venv
 
 help:## 	verbose help
 	@sed -n 's/^## //p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
-
+.ONESHELL:
+env:
+	@echo -e "PORT=6102"                                 >.env
+	@echo -e "HOST=0.0.0.0"                             >>.env
+	@echo -e "NODE_ENV=development"                     >>.env
+	@echo -e "APP_KEY=UgSS9o_p04BZ0duSOyJ1kz6TjlTXoOaE" >>.env
+	@echo -e "DRIVE_DISK=local"                         >>.env
+	@echo -e "SESSION_DRIVER=cookie"                    >>.env
+	@echo -e "CACHE_VIEWS=false"                        >>.env
+	@echo -e "PROXY_URL=ws://0.0.0.0:6102"              >>.env
+	@echo RELAYS=$(RELAYS)                              >>.env
+	@cat .env
 .PHONY:pnpm
 pnpm:nvm
 	npm i --global yarn
