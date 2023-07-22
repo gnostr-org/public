@@ -15,36 +15,42 @@
 
 <body>
   <div class="container">
-    <div class="content">
+    <div class="cont_ent">
 
       <div class="header">
-        <h1 class="title">Gnostr<span class="gradient">.org</span></h1>
+        <h1 class="title">Gnostr<span class="gr_adient">.org</span></h1>
         <span class="subtitle">A git/nostr version control system.</span>
       </div>
 
-      <input type="text" disabled class="copy-text" value="{{proxyUrl}}">
 
-
-      <span>🟢 Connected {{relays.filter(relay => relay.connected).length}}/{{relaysCount}}</span>
-      <ul>
+<span>{🟢},<br>
+{"connected" : " {{relays.filter(relay => relay.connected).length}}"},
+    {
+        "kind": 10002,
+        "tags": [
         @each(relay in relays.filter(relay => relay.connected))
-        <li> {{ relay.url }} </li>
+        ["r", "{{ relay.url }}"],
         @end
-      </ul>
-
-      <span>🔴 Disconnected</span>
-      <ul>
-        @each(relay in relays.filter(relay => !relay.connected))
-        <li> {{ relay.url }} </li>
-        @end
-      </ul>
+        ],
+        },
+</span><br>
+<span>{🔴},<br>
+{"disconnected" : " {{relays.filter(relay => !relay.connected).length}}"},
+{
+    "kind": 10002,
+    "tags": [
+    @each(relay in relays.filter(relay => !relay.connected))
+    ["r", "{{ relay.url }}"],
+    @end
+    ],
+    },
+      </span>
     </div>
 
   </div>
   <div class="footer">
-    <span> <a href="https://github.com/dolu89/nostr-proxy">Github</a></span>
-    <span>Made with 💩 by Dolu</span>
-    <span>⚡️dolu89@ln.tips</span>
+      <input type="text" disabled class="copy-text" value="{{proxyUrl}}">
+    <span> <a href="https://github.com/gnostr-org/gnostr-proxy">Github</a></span>
   </div>
 </body>
 

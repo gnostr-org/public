@@ -56,6 +56,7 @@ a:hover {
   background: -webkit-linear-gradient(45deg, #ce9ffc, #7367f0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  align-items: start;
 }
 
 .content {
@@ -65,7 +66,7 @@ a:hover {
 .copy-text {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px;
+  #padding: 10px;
   font-size: 1.2rem;
   font-weight: 500;
   color: #000;
@@ -74,7 +75,7 @@ a:hover {
   border-radius: 4px;
   border: 3px solid transparent;
   text-align: center;
-  margin-bottom: 30px;
+  #margin-bottom: 30px;
 }
 
 .footer {
