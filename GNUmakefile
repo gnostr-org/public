@@ -184,12 +184,13 @@ env:
 	@cat .env
 .PHONY:pnpm
 pnpm:nvm
+	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
 	npm i --global yarn
 	npm i --global pnpm
 	@pnpm install reflect-metadata
+	@pnpm install pino-pretty
+run:env pnpm## 	gnostr-proxy
 	@pnpm install && pnpm run dev #&
-run:pnpm## 	gnostr-proxy
-	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
 .PHONY: report
 report:## 	report
 ## report
