@@ -179,9 +179,9 @@ env:
 	@echo -e "DRIVE_DISK=local"                         >>.env
 	@echo -e "SESSION_DRIVER=cookie"                    >>.env
 	@echo -e "CACHE_VIEWS=false"                        >>.env
-	@echo -e "PROXY_URL=ws://0.0.0.0:6102"              >>.env
+	@echo -e "PROXY_URL=ws://gnostr.org:6102"           >>.env
 	@echo RELAYS=$(RELAYS)                              >>.env
-	@cat .env > .env.example
+	#@cat .env > .env.example
 .PHONY:pnpm
 pnpm:nvm
 	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
@@ -191,6 +191,10 @@ pnpm:nvm
 	@pnpm install pino-pretty
 run:env pnpm## 	gnostr-proxy
 	@pnpm install && pnpm run dev #&
+lynx-dump:
+	type -P lynx && lynx -dump -nolist http://localhost:6102 #&& \
+    #make lynx-dump | jq -R
+
 .PHONY: report
 report:## 	report
 ## report
