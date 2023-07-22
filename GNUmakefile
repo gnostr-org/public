@@ -112,7 +112,7 @@ export GIT_REPO_NAME
 GIT_REPO_PATH                           := $(HOME)/$(GIT_REPO_NAME)
 export GIT_REPO_PATH
 
-RELAYS                                  =$(shell curl  'https://api.nostr.watch/v1/online' 2>/dev/null | tr -d '[]')
+RELAYS                                  =$(shell curl  'https://api.nostr.watch/v1/online' 2>/dev/null | tr -d '[ " ]')
 export RELAYS
 
 
@@ -181,7 +181,7 @@ env:
 	@echo -e "CACHE_VIEWS=false"                        >>.env
 	@echo -e "PROXY_URL=ws://0.0.0.0:6102"              >>.env
 	@echo RELAYS=$(RELAYS)                              >>.env
-	@cat .env
+	@cat .env > .env.example
 .PHONY:pnpm
 pnpm:nvm
 	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
