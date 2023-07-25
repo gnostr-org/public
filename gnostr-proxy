@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
+(echo `pwd`) & clear && \
 # gnostr-proxy sub-shell process
 #
 #
 
 
-export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && nvm && nvm install v16.14.2 && \
+export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] >/dev/null && \. "$NVM_DIR/nvm.sh" >/dev/null && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && echo "node" && nvm install v16.14.2 >/dev/null && \
 
 (\
 
 mkdir -p .gnostr;\
 [ ! -d .gnostr/gnostr-proxy ] && git clone --depth 1 --branch master https://github.com/gnostr-org/gnostr-proxy.git .gnostr/gnostr-proxy;\
 [   -d .gnostr/gnostr-proxy ] && cd .gnostr/gnostr-proxy;\
-make run;\
+make run 2>/tmp/gnostr-proxy.log;\
 
 );
 

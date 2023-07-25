@@ -181,7 +181,6 @@ env:
 	@echo -e "CACHE_VIEWS=false"                        >>.env
 	@echo -e "PROXY_URL=ws://relay.gnostr.org"          >>.env
 	@echo RELAYS=$(RELAYS)                              >>.env
-	#@cat .env > .env.example
 .PHONY:pnpm
 pnpm:nvm
 	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
