@@ -190,7 +190,11 @@ pnpm:nvm
 	@pnpm install reflect-metadata
 	@pnpm install pino-pretty
 run:env pnpm## 	gnostr-proxy
-	@pnpm install && pnpm run dev #&
+	@( \
+	pnpm install; \
+		pnpm run dev; \
+)
+	@pnpm install && pnpm run dev
 lynx-dump:
 	@type -P lynx && lynx -dump -nolist http://localhost:6102 #&& \
     #make lynx-dump | jq -R
