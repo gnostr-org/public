@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+gnostr-set-relays >/tmp/gnostr-proxy.log || echo
 (echo `pwd`) & clear && \
 # gnostr-proxy sub-shell process
 #
