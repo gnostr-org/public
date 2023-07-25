@@ -1,30 +1,11 @@
-ARG NODE_IMAGE=node:16.13.1-alpine
+FROM octoblu/pnpm
+MAINTAINER Bob Example <bob@example.com>
 
-ARG PNPM_VERSION=v6.16.0
-ENV PNPM_VERSION=v6.16.0
-FROM $NODE_IMAGE AS base
-RUN apk --no-cache add dumb-init curl python3 make gcc g++ git make
-RUN mkdir -p /home/node/app && chown node:node /home/node/app
-WORKDIR /home/node/app
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
-USER node
-RUN mkdir tmp
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-FROM base AS dependencies
-COPY --chown=node:node ./package.json ./
-COPY --chown=node:node ./pnpm-lock.yaml ./
-RUN pnpm install
-COPY --chown=node:node . .
+COPY . /usr/src/app/
+RUN pnpm install --production --quiet
+COPY . /usr/src/app/
 
-FROM dependencies AS build
-RUN node ace build --production --ignore-ts-errors
-
-FROM base AS production
-ENV NODE_ENV=production
-ENV PORT=$PORT
-ENV HOST=0.0.0.0
-COPY --chown=node:node ./package*.json ./
-RUN pnpm install --prod
-COPY --chown=node:node --from=build /home/node/app/build .
-EXPOSE $PORT
-CMD [ "dumb-init", "node", "server.js" ]
+CMD [ "node", "server.js" ] # Explicitely calling node rather than 'npm start' allows signal propagation (SIGINT, SIGTERM, etc.)
