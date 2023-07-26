@@ -57,7 +57,7 @@ dependencies:
     specifier: ^0.1.13
     version: 0.1.13
   sha256:
-    specifier: link:@noble/hashes/sha256
+    specifier: '@noble/hashes/sha256'
     version: link:@noble/hashes/sha256
   source-map-support:
     specifier: ^0.5.21

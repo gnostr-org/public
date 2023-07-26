@@ -115,10 +115,10 @@ export GIT_REPO_PATH
 RELAYS                                  =$(shell curl  'https://api.nostr.watch/v1/online' 2>/dev/null | tr -d '[ " ]')
 export RELAYS
 
-
-NODE_VERSION                            :=v16.14.2
+## REF: more notes in .nvmrc
+NODE_VERSION                            :=v16.20.1
 export NODE_VERSION
-NODE_ALIAS                              :=v16.14.0
+NODE_ALIAS                              :=v16.20.0
 export NODE_ALIAS
 NVM_DIR                                 :=$(HOME)/.nvm
 export NVM_DIR
@@ -182,18 +182,17 @@ env:
 	@echo -e "PROXY_URL=ws://relay.gnostr.org"          >>.env
 	@echo RELAYS=$(RELAYS)                              >>.env
 .PHONY:pnpm
-pnpm:nvm
-	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
-	npm i --global yarn
-	npm i --global pnpm
-	@pnpm install reflect-metadata
-	@pnpm install pino-pretty
+pnpm:## 	nvm exec npm install -g @pnpm/exe
+	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION)
+	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION) && nvm use
+	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION) && nvm exec npm install -g @pnpm/exe
+	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION) && nvm exec npm install -g yarn
 run:env pnpm## 	gnostr-proxy
 	@( \
-	pnpm install; \
-		pnpm run dev; \
+	. ~/.bashrc && \
+	nvm exec pnpm install; \
+		nvm exec pnpm run dev; \
 )
-	@pnpm install && pnpm run dev
 lynx-dump:
 	@type -P lynx && lynx -dump -nolist http://localhost:6102 #&& \
     #make lynx-dump | jq -R
@@ -300,7 +299,7 @@ success:
 .ONESHELL:
 nvm: ## 	nvm
 	@curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash || git pull -C $(HOME)/.nvm && export NVM_DIR="$(HOME)/.nvm" && [ -s "$(NVM_DIR)/nvm.sh" ] && \. "$(NVM_DIR)/nvm.sh" && [ -s "$(NVM_DIR)/bash_completion" ] && \. "$(NVM_DIR)/bash_completion"  && nvm install $(NODE_VERSION) && nvm use $(NODE_VERSION)
-	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION) &
+	@source ~/.bashrc && nvm alias $(NODE_ALIAS) $(NODE_VERSION) && nvm use &
 
 nvm-clean: ## 	nvm-clean
 	@rm -rf ~/.nvm
