@@ -7,6 +7,3 @@
 [submodule "pnpm"]
 	path = pnpm
 	url = https://github.com/pnpm/pnpm.git
-[submodule "resources/js/isomorphic-git"]
-	path = resources/js/isomophic-git
-	url = https://github.com/gnostr-org/isomorphic-git.git
