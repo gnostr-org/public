@@ -18,8 +18,8 @@ jobs:
     container: debian:${{ matrix.tag }}
 
     steps:
-      - run: sudo apt-get update -y
-      - run: sudo apt-get install file nodejs -y
+      - run: apt-get update -y
+      - run: apt-get install file nodejs -y
 
       - uses: actions/checkout@v3
         with:
