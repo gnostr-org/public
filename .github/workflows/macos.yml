@@ -24,6 +24,7 @@ jobs:
 
       - run: |
           brew install node@16
+          brew install --cask docker
           make docker-start
           make run
 
