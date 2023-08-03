@@ -23,7 +23,7 @@ jobs:
           set-safe-directory: 'true'
 
       - run: |
-          brew install nodejs
+          brew install node@16
           make docker-start
           make run
 
