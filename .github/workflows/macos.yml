@@ -22,4 +22,4 @@ jobs:
           submodules: 'true'
           set-safe-directory: 'true'
 
-      - run: brew install nodejs
+      - run: brew install nvm && nvm install 16 && nvm use 16
