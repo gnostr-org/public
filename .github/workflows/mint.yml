@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - run: sudo apt-get -y update || echo
-      - run: sudo apt-get -y install git file || echo
+      - run: sudo apt-get -y install file || echo
 
       - uses: actions/checkout@v3
         with:
