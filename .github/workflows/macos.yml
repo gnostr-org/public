@@ -23,9 +23,7 @@ jobs:
           set-safe-directory: 'true'
 
       - run: |
-          brew install nvm && nvm install 16 && nvm use 16 && make nvm && source ~/.bashrc && $(which nvm)
-      - run: |
-          export NVM_DIR="$HOME/.nvm" && [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh" && [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-      - run: |
-          brew install nvm && nvm install 16 && nvm use 16 && make nvm && source ~/.bashrc && $(which nvm)
+          brew install nodejs
+          make docker-start
+          make run
 
