@@ -23,8 +23,8 @@ jobs:
           set-safe-directory: 'true'
 
       - run: |
-          brew install -vd node@16
-          brew install -vd --cask docker
-          make docker-start
+          ## brew install -vd node@16
+          ## brew install -vd --cask docker
+          ## make docker-start
           make run
 
