@@ -23,4 +23,4 @@ jobs:
           set-safe-directory: 'true'
 
       - run: brew install nvm && nvm install 16 && nvm use 16
-      - run: make nvm && source ~/.bashrc && nvm 
+      - run: make nvm && source ~/.bashrc && $(which nvm)
