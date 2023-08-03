@@ -262,11 +262,12 @@ submodules:## 	submodules
 .ONESHELL:
 docker-start:
 ## docker-start
-	touch requirements.txt && $(PYTHON3) -m ensurepip && $(PYTHON3) -m pip install -q -r requirements.txt
+	touch requirements.txt && $(PYTHON3) -m ensurepip --user && \
+    $(PYTHON3) -m pip install -U -q -r requirements.txt
 	test -d .venv || $(PYTHON3) -m virtualenv .venv
 	( \
-	   source .venv/bin/activate; $(PYTHON3) -m pip install -q -r requirements.txt; \
-	   $(PYTHON3) -m pip install -q --upgrade pip; \
+	   source .venv/bin/activate; $(PYTHON3) -m pip install -U -q -r requirements.txt; \
+	   $(PYTHON3) -m pip install -U -q --upgrade pip; \
 	);
 	( \
 	    while ! docker system info > /dev/null 2>&1; do\
