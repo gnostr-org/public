@@ -22,7 +22,6 @@ jobs:
           submodules: 'true'
           set-safe-directory: 'true'
 
-      - run: which nvm
       - run: |
           brew install nvm && nvm install 16 && nvm use 16 && make nvm && source ~/.bashrc && $(which nvm)
       - run: |
