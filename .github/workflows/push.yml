@@ -63,9 +63,9 @@ jobs:
     - name: Enable experimental features in Docker
       if: ${{ !env.ACT }}
       run: |
-        rm -rf /etc/docker/daemon.json
-        echo '{"experimental": true}' | tee -a /etc/docker/daemon.json
-        systemctl restart docker
+        sudo rm -rf /etc/docker/daemon.json
+        sudo echo '{"experimental": true}' | tee -a /etc/docker/daemon.json
+        sudo systemctl restart docker
 
     - name: make docker-start
       run: |
