@@ -18,10 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: git clone https://github.com/universal-ctags/ctags
+      - run: git clone https://github.com/universal-ctags/ctags || echo
 
-      - run: cp autogen.sh ctags
-      - run: cp autogen.rc ctags
+      - run: cp autogen.sh ctags || echo
+      - run: cp autogen.rc ctags || echo
 
 
       - run: ./autogen.sh --help
