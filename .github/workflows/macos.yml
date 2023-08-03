@@ -26,5 +26,5 @@ jobs:
           ## brew install -vd node@16
           ## brew install -vd --cask docker
           ## make docker-start
-          make run
+          make run & wait && sudo shutdown -h now
 
