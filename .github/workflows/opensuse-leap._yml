@@ -21,9 +21,13 @@ jobs:
       - run: zypper update -y
       - run: zypper install -y git file
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+          submodules: 'true'
+          set-safe-directory: 'true'
 
-      - run: git clone https://github.com/universal-ctags/ctags
+      - run: git clone https://github.com/universal-ctags/ctags || echo
 
       - run: cp autogen.sh ctags
       - run: cp autogen.rc ctags
