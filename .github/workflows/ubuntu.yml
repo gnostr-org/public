@@ -11,12 +11,12 @@ jobs:
 
     strategy:
       matrix:
-        version: [18.04, 20.04]
+        version: [20.04, 22.04]
 
     runs-on: ubuntu-${{ matrix.version }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - run: git clone https://github.com/universal-ctags/ctags || echo
 
