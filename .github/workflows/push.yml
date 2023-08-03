@@ -30,7 +30,6 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get               -y install docker*
         sudo apt-get --fix-missing -y install make git nodejs
         sudo apt-get --fix-missing -y install quilt qemu-user-static debootstrap wget
         sudo apt-get --fix-missing -y install bsdtar || echo
