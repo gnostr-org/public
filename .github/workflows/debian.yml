@@ -18,8 +18,8 @@ jobs:
     container: debian:${{ matrix.tag }}
 
     steps:
-      - run: sudo apt-get -y update
-      - run: sudo apt-get -y install git file
+      - run: apt-get -y update
+      - run: apt-get -y install git file
 
       - uses: actions/checkout@v3
         with:
