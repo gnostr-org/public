@@ -49,9 +49,9 @@ jobs:
     - name: Nuke current Docker installation
       if: ${{ !env.ACT }}
       run: |
-        systemctl stop docker
+        sudo systemctl stop docker
         sudo apt-get purge docker-ce docker-ce-cli containerd.io moby-engine moby-cli
-        rm -rf /var/lib/docker
+        sudo rm -rf /var/lib/docker
 
     - name: Re-install Docker
       if: ${{ !env.ACT }}
