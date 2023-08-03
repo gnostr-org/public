@@ -24,4 +24,4 @@ jobs:
 
       - run: printenv
       - run: |
-          brew install nvm make && nvm install 16 && nvm use 16 && PATH="/usr/local/opt/make/libexec/gnubin:$PATH" && make nvm && source ~/.bashrc && $(which nvm)
+          brew install nvm make && nvm install 16 && nvm use 16 && PATH="/usr/local/opt/make/libexec/gnubin:$PATH" make nvm && source ~/.bashrc && $(which nvm)
