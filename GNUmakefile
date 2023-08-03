@@ -272,11 +272,11 @@ docker-start:
 	( \
 	    while ! docker system info > /dev/null 2>&1; do\
 	    echo 'Waiting for docker to start...';\
-	    if [[ '$(OS)' == 'Linux' ]]; then\
+	    if [[ '$(OS)' == 'Linux' ]] && [[ ! '$(GITHUB_ACTIONS)' == 'true' ]]; then\
 	    type -P apt && apt install docker*;\
 	    type -P systemctl && systemctl restart docker.service || type -P service && service docker.service restart || type -P apk &&  apk add openrc docker && rc-service docker restart || echo "try installing docker manually...";\
 	    fi;\
-	    if [[ '$(OS)' == 'Darwin' ]]; then\
+	    if [[ '$(OS)' == 'Darwin' ]] && [[ ! '$(GITHUB_ACTIONS)' == 'true' ]]; then\
 	     open --background -a /./Applications/Docker.app/Contents/MacOS/Docker;\
 	    fi;\
 	sleep 1;\
