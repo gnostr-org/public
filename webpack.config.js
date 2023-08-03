@@ -1,6 +1,11 @@
 const { join } = require('path')
 const Encore = require('@symfony/webpack-encore')
 
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Encore runtime environment
@@ -9,6 +14,13 @@ const Encore = require('@symfony/webpack-encore')
 if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev')
 }
+
+
+
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +44,12 @@ Encore.setOutputPath('./public/assets')
 */
 Encore.setPublicPath('/assets')
 
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Entrypoints
@@ -47,6 +65,13 @@ Encore.setPublicPath('/assets')
 */
 Encore.addEntry('app', './resources/js/app.js')
 
+
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Copy assets
@@ -57,10 +82,19 @@ Encore.addEntry('app', './resources/js/app.js')
 | we must copy them manually.
 |
 */
+
+
+//TODO: load .gnostr assets
+
+
 // Encore.copyFiles({
 //   from: './resources/images',
 //   to: 'images/[path][name].[hash:8].[ext]',
 // })
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +151,12 @@ Encore.enableSourceMaps(!Encore.isProduction())
 */
 Encore.enableVersioning(Encore.isProduction())
 
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Configure dev server
@@ -136,6 +176,12 @@ Encore.configureDevServerOptions((options) => {
   } else if (!Array.isArray(options.static)) {
     options.static = [options.static]
   }
+
+
+
+
+
+
 
   /**
    * Enable live reload and add views directory
