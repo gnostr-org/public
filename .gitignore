@@ -41,3 +41,4 @@ coverage
 tmp
 .pnpm-store
 .gnostr/gnostr-proxy
+.gnostr/lfs
