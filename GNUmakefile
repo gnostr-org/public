@@ -191,6 +191,9 @@ pnpm:nvm
 	@pnpm install pino-pretty
 run:env pnpm## 	gnostr-proxy
 	@pnpm install && pnpm run dev #&
+run-dev:run## 	run-dev
+run-production:## 	run-production
+	@npm run build && install .env build/ && cd build && pnpm install --prod && node server.js
 lynx-dump:
 	@type -P lynx && lynx -dump -nolist http://localhost:6102 #&& \
     #make lynx-dump | jq -R
