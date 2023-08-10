@@ -84,7 +84,7 @@ devDependencies:
     version: 7.20.2(@babel/core@7.20.12)
   '@japa/preset-adonis':
     specifier: ^1.2.0
-    version: 1.2.0(@adonisjs/core@5.9.0)(@japa/core@7.3.1)(@japa/runner@2.3.0)(openapi-types@12.1.3)
+    version: 1.2.0(@adonisjs/core@5.9.0)(@japa/core@7.3.3)(@japa/runner@2.3.0)(openapi-types@12.1.3)
   '@japa/runner':
     specifier: ^2.3.0
     version: 2.3.0
@@ -1730,12 +1730,12 @@ packages:
       - openapi-types
     dev: true
 
-  /@japa/base-reporter@1.1.1(@japa/core@7.3.1):
+  /@japa/base-reporter@1.1.1(@japa/core@7.3.3):
     resolution: {integrity: sha512-ahhlu5kni6rp5zlANDM1oeqqFADlNLMY/ZV6EAywKz5SBik3AgFVeTt5nw+aX8L5FIYEh9xPPvnfLSzgzxha2Q==}
     peerDependencies:
       '@japa/core': ^7.0.0
     dependencies:
-      '@japa/core': 7.3.1
+      '@japa/core': 7.3.3
       '@japa/errors-printer': 2.1.0
       '@poppinss/cliui': 3.0.5
       ms: 2.1.3
@@ -1743,6 +1743,16 @@ packages:
 
   /@japa/core@7.3.1:
     resolution: {integrity: sha512-5RjVmiVjqpwo8tiPxYZ289YxMEfFEByZv5mEqhrWVnZVmzx1T/6IsBc17DY8uhP7xOKfAiphw3NTyOeQob+WKw==}
+    dependencies:
+      '@poppinss/hooks': 6.0.2-0
+      async-retry: 1.3.3
+      emittery: 0.13.1
+      macroable: 7.0.2
+      time-span: 4.0.0
+    dev: true
+
+  /@japa/core@7.3.3:
+    resolution: {integrity: sha512-3mkWlzWVALZANFfMK6Q6xtYGM3mpzZeeGGUVQGDt2OOxvL8FDADVxHrRn9BFc1V4fVJO4jR/QH5utrb+RfCF5g==}
     dependencies:
       '@poppinss/hooks': 6.0.2-0
       async-retry: 1.3.3
@@ -1760,7 +1770,7 @@ packages:
       youch-terminal: 2.2.0
     dev: true
 
-  /@japa/preset-adonis@1.2.0(@adonisjs/core@5.9.0)(@japa/core@7.3.1)(@japa/runner@2.3.0)(openapi-types@12.1.3):
+  /@japa/preset-adonis@1.2.0(@adonisjs/core@5.9.0)(@japa/core@7.3.3)(@japa/runner@2.3.0)(openapi-types@12.1.3):
     resolution: {integrity: sha512-jcvQCN9U5WA4kdKDtYuV6DZMzrZomxho3MASS6yhnJsSqSW6jgFDNwhOgSzY7AyPgxmVAf3jZ6JKd7r2USctlA==}
     peerDependencies:
       '@adonisjs/core': ^5.0.0
@@ -1771,7 +1781,7 @@ packages:
       '@japa/assert': 1.4.1(@japa/runner@2.3.0)(openapi-types@12.1.3)
       '@japa/run-failed-tests': 1.1.1(@japa/runner@2.3.0)
       '@japa/runner': 2.3.0
-      '@japa/spec-reporter': 1.3.3(@japa/core@7.3.1)
+      '@japa/spec-reporter': 1.3.3(@japa/core@7.3.3)
     transitivePeerDependencies:
       - '@japa/core'
       - openapi-types
@@ -1801,10 +1811,10 @@ packages:
       inclusion: 1.0.1
     dev: true
 
-  /@japa/spec-reporter@1.3.3(@japa/core@7.3.1):
+  /@japa/spec-reporter@1.3.3(@japa/core@7.3.3):
     resolution: {integrity: sha512-EOOjvQVmmWZDKxmO+f0v/BSNeKzKkeJSrNwEldkF40zZWdHX2J3Jb2MJowE5DgSOQCiG/OG2UFen0I+XLnPoxQ==}
     dependencies:
-      '@japa/base-reporter': 1.1.1(@japa/core@7.3.1)
+      '@japa/base-reporter': 1.1.1(@japa/core@7.3.3)
       '@japa/errors-printer': 2.1.0
       '@poppinss/cliui': 3.0.5
       ms: 2.1.3
@@ -1902,12 +1912,23 @@ packages:
       glob-to-regexp: 0.3.0
     dev: true
 
+  /@noble/curves@1.1.0:
+    resolution: {integrity: sha512-091oBExgENk/kGj3AZmtBDMpxQPDtxQABR2B9lb1JbVTs6ytdzZNwvhxQ4MWasRNEzlbEH8jCWFCwhF/Obj5AA==}
+    dependencies:
+      '@noble/hashes': 1.3.1
+    dev: false
+
   /@noble/hashes@1.0.0:
     resolution: {integrity: sha512-DZVbtY62kc3kkBtMHqwCOfXrT/hnoORy5BJ4+HU1IR59X0KWAOqsfzQPcUl/lQLlG7qXbe/fZ3r/emxtAl+sqg==}
     dev: false
 
   /@noble/hashes@1.2.0:
     resolution: {integrity: sha512-FZfhjEDbT5GRswV3C6uvLPHMiVD6lQBmpoX5+eSiPaMTXte/IKqI5dykDxzZB/WBeK/CDuQRBWarPdi3FNY2zQ==}
+    dev: false
+
+  /@noble/hashes@1.3.1:
+    resolution: {integrity: sha512-EbqwksQwz9xDRGfDST86whPBgM65E0OH/pCgqW0GBVzO22bNE+NuIbeTb714+IfSjU3aRk47EUvXIb5bTsenKA==}
+    engines: {node: '>= 16'}
     dev: false
 
   /@noble/secp256k1@1.7.1:
@@ -2112,10 +2133,25 @@ packages:
       '@scure/base': 1.1.1
     dev: false
 
+  /@scure/bip32@1.3.1:
+    resolution: {integrity: sha512-osvveYtyzdEVbt3OfwwXFr4P2iVBL5u1Q3q4ONBfDY/UpOuXmOlbgwc1xECEboY8wIays8Yt6onaWMUdUbfl0A==}
+    dependencies:
+      '@noble/curves': 1.1.0
+      '@noble/hashes': 1.3.1
+      '@scure/base': 1.1.1
+    dev: false
+
   /@scure/bip39@1.1.1:
     resolution: {integrity: sha512-t+wDck2rVkh65Hmv280fYdVdY25J9YeEUIgn2LG1WM6gxFkGzcksoDiUkWVpVp3Oex9xGC68JU2dSbUfwZ2jPg==}
     dependencies:
       '@noble/hashes': 1.2.0
+      '@scure/base': 1.1.1
+    dev: false
+
+  /@scure/bip39@1.2.1:
+    resolution: {integrity: sha512-Z3/Fsz1yr904dduJD0NpiyRHhRYHdcnyh73FZWiV+/qhWi83wNJ3NWolYqCEN+ZWsUz2TWwajJggcRE9r1zUYg==}
+    dependencies:
+      '@noble/hashes': 1.3.1
       '@scure/base': 1.1.1
     dev: false
 
@@ -6270,21 +6306,20 @@ packages:
     resolution: {integrity: sha512-w3ttz7ZVpSNDBe0Nw0UdJP0oO8eBDpaf0384OOj4xyWARTjnaznulvHhYedYurEPK39P1yrJCo/omNatE79mRQ==}
     dependencies:
       isomorphic-ws: 5.0.0(ws@8.12.0)
-      nostr-tools: 1.4.1
+      nostr-tools: 1.14.0
       safe-stable-stringify: 2.4.2
     transitivePeerDependencies:
       - ws
     dev: false
 
-  /nostr-tools@1.4.1:
-    resolution: {integrity: sha512-pFAbVNtRMfW5ducUmk0f20IZv4a6pXYchBQKuA6D3x6sg83KoWipuiAie/gfOgrkoCsBLV14DmpWsVmo3N7WXQ==}
+  /nostr-tools@1.14.0:
+    resolution: {integrity: sha512-hwq2i1z5/DneXRE5Zu/TzQuKzVLcB+gOdfT9CeoiScvNw/2dWRGJvyTXIdF92d7NQ7nMcEwqVJPDytLpEpiiKw==}
     dependencies:
-      '@noble/hashes': 1.0.0
-      '@noble/secp256k1': 1.7.1
+      '@noble/curves': 1.1.0
+      '@noble/hashes': 1.3.1
       '@scure/base': 1.1.1
-      '@scure/bip32': 1.1.5
-      '@scure/bip39': 1.1.1
-      prettier: 2.8.4
+      '@scure/bip32': 1.3.1
+      '@scure/bip39': 1.2.1
     dev: false
 
   /npm-run-path@4.0.1:
