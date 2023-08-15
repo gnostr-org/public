@@ -32,10 +32,21 @@ class WebSocketServer {
         if (this.booted) return
 
         this._pool.onerror((err, relayUrl) => {
-            console.log("RelayPool error", err, " from relay ", relayUrl);
+
+
+
+            //console.log("RelayPool error", err, " from relay ", relayUrl);
+
+
+
         });
         this._pool.onnotice((relayUrl, notice) => {
-            console.log("RelayPool notice", notice, " from relay ", relayUrl);
+
+
+
+            //console.log("RelayPool notice", notice, " from relay ", relayUrl);
+
+
         });
         await this.initWsHandler()
         this.booted = true
@@ -73,6 +84,10 @@ class WebSocketServer {
                             eoseCount = this._relays.length
                             clearTimeout(eoseTimer)
                         }, 2500)
+
+
+
+
                         const unsub = this._pool.subscribe(
                             [filters],
                             this._relays,
@@ -80,6 +95,9 @@ class WebSocketServer {
                                 const { relayPool, relays, ...e } = event
                                 socket.send(JSON.stringify(["EVENT", subscriptionId, e]))
                             },
+
+
+
                             undefined,
                             (events, relayURL) => {
                                 eoseCount++
@@ -91,6 +109,7 @@ class WebSocketServer {
                         )
 
                         this._subs.set(randomSubscriptionId, unsub)
+
                     }
                     else if (parsed[0] === 'CLOSE') {
                         const subscriptionId = parsed[1]
@@ -136,7 +155,15 @@ class WebSocketServer {
                         throw new Error(`Invalid event ${data.toString()}`)
                     }
                 } catch (error) {
-                    console.error('Unexpected error in Socket message: ', data.toString(), error)
+
+
+
+
+                    //console.error('Unexpected error in Socket message: ', data.toString(), error)
+
+
+
+
                     for (const key of this._cache.keys()) {
                         if (key.startsWith(socket.connectionId)) {
                             const randomSubscriptionId = this._cache.get(key)
@@ -153,14 +180,23 @@ class WebSocketServer {
             })
 
             socket.on('close', async () => {
+
                 for (const key of this._cache.keys()) {
+
                     if (key.startsWith(socket.connectionId)) {
+
                         const randomSubscriptionId = this._cache.get(key)
+
                         if (randomSubscriptionId) {
+
                             const unsub = this._subs.get(randomSubscriptionId)
+
                             if (unsub) unsub()
+
                             this._subs.delete(randomSubscriptionId)
+
                         }
+
                         this._cache.delete(key)
                     }
                 }
@@ -168,25 +204,47 @@ class WebSocketServer {
         })
     }
 
+
+
+
+
     public async getRelays(): Promise<{ url: string, connected: boolean }[]> {
+
+
         let relays: { url: string, connected: boolean }[] = []
+
+
         for (const [url, status] of this._pool.getRelayStatuses()) {
+
+
             relays = [...relays, { url: url, connected: status === 1 ? true : false }]
+
         }
         return relays
+
     }
 
+
+
+
+
     public async getStats() {
+
         const relays = await this.getRelays()
+
         return {
+
             connectedClients: WebSocketInstance.ws.clients.size,
             internalInfos: {
                 subs: this._subs.size,
                 cache: this._cache.size,
             },
+
             relays: {
+
                 connected: relays.filter(relay => relay.connected).length,
                 total: relays.length
+
             }
         }
     }

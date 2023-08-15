@@ -29,6 +29,7 @@ export python_version_minor
 export python_version_patch
 export PYTHON_VERSION
 
+venv:venv-3-10
 venv-3-10:## 	venv-3-10
 ## venv-3-10
 	@echo PATH=$(PATH):/usr/local/opt/python@3.10/Frameworks/Python.framework/Versions/3.10/bin
