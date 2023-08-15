@@ -7,6 +7,17 @@
 
 import { AssetsConfig } from '@ioc:Adonis/Core/Static'
 
+
+
+
+
+//TODO: repurpose for hyper-gnostr gnostr-lfs (git lfs)
+//TODO: handle .gnostr/reflog
+
+
+
+
+
 const staticConfig: AssetsConfig = {
   /*
   |--------------------------------------------------------------------------
@@ -20,7 +31,15 @@ const staticConfig: AssetsConfig = {
   |
   |
   */
+
+//TODO: symlink .gnostr/gnostr-proxy assets to .gnostr/public
+
   enabled: true,
+
+
+
+
+
 
   /*
   |--------------------------------------------------------------------------
@@ -36,6 +55,8 @@ const staticConfig: AssetsConfig = {
   | - allow: Serve the file contents
   |
   */
+  //TODO: handle .git .gnostr
+  //TODO: handle .gnostr/reflog
   dotFiles: 'ignore',
 
   /*
@@ -83,6 +104,8 @@ const staticConfig: AssetsConfig = {
   | contents change.
   |
   */
+
+  //TODO: handle .gnostr/reflog
   immutable: false,
 }
 

@@ -112,6 +112,10 @@ export GIT_REPO_NAME
 GIT_REPO_PATH                           := $(HOME)/$(GIT_REPO_NAME)
 export GIT_REPO_PATH
 
+RELAYS                                  =$(shell curl  'https://api.nostr.watch/v1/online' 2>/dev/null | tr -d '[ " ]')
+export RELAYS
+
+
 NODE_VERSION                            :=v16.14.2
 export NODE_VERSION
 NODE_ALIAS                              :=v16.14.0
@@ -166,13 +170,34 @@ init:initialize venv##	initialize venv
 
 help:## 	verbose help
 	@sed -n 's/^## //p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
-
+.ONESHELL:
+env:
+	@echo -e "PORT=6102"                                 >.env
+	@echo -e "HOST=0.0.0.0"                             >>.env
+	@echo -e "NODE_ENV=development"                     >>.env
+	@echo -e "APP_KEY=UgSS9o_p04BZ0duSOyJ1kz6TjlTXoOaE" >>.env
+	@echo -e "DRIVE_DISK=local"                         >>.env
+	@echo -e "SESSION_DRIVER=cookie"                    >>.env
+	@echo -e "CACHE_VIEWS=false"                        >>.env
+	@echo -e "PROXY_URL=ws://relay.gnostr.org"          >>.env
+	@echo RELAYS=$(RELAYS)                              >>.env
+	#@cat .env > .env.example
+.PHONY:pnpm
 pnpm:nvm
-	npm i --global @adonisjs/cli
-	npm i --global @adonisjs/core
-	curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=$(PNPM_VERSION) sh - && \
-    pnpm run dev &
-run:pnpm## 	node-proxy
+	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
+	npm i --global yarn  --force
+	npm i --global pnpm  --force
+	@pnpm install reflect-metadata
+	@pnpm install pino-pretty
+run:env pnpm## 	gnostr-proxy
+	@pnpm install && pnpm run dev #&
+run-dev:run## 	run-dev
+run-production:## 	run-production
+	@npm run build && install .env build/ && cd build && pnpm install --prod && node server.js
+lynx-dump:
+	@type -P lynx && lynx -dump -nolist http://localhost:6102 #&& \
+    #make lynx-dump | jq -R
+
 .PHONY: report
 report:## 	report
 ## report
@@ -240,20 +265,21 @@ submodules:## 	submodules
 .ONESHELL:
 docker-start:
 ## docker-start
-	touch requirements.txt && $(PYTHON3) -m ensurepip && $(PYTHON3) -m pip install -q -r requirements.txt
+	touch requirements.txt && $(PYTHON3) -m ensurepip --user && \
+    $(PYTHON3) -m pip install -U -q -r requirements.txt
 	test -d .venv || $(PYTHON3) -m virtualenv .venv
 	( \
-	   source .venv/bin/activate; $(PYTHON3) -m pip install -q -r requirements.txt; \
-	   $(PYTHON3) -m pip install -q --upgrade pip; \
+	   source .venv/bin/activate; $(PYTHON3) -m pip install -U -q -r requirements.txt; \
+	   $(PYTHON3) -m pip install -U -q --upgrade pip; \
 	);
 	( \
 	    while ! docker system info > /dev/null 2>&1; do\
 	    echo 'Waiting for docker to start...';\
-	    if [[ '$(OS)' == 'Linux' ]]; then\
+	    if [[ '$(OS)' == 'Linux' ]] && [[ '$(GITHUB_ACTIONS)' == 'false' ]]; then\
 	    type -P apt && apt install docker*;\
 	    type -P systemctl && systemctl restart docker.service || type -P service && service docker.service restart || type -P apk &&  apk add openrc docker && rc-service docker restart || echo "try installing docker manually...";\
 	    fi;\
-	    if [[ '$(OS)' == 'Darwin' ]]; then\
+	    if [[ '$(OS)' == 'Darwin' ]] && [[ '$(GITHUB_ACTIONS)' == 'false' ]]; then\
 	     open --background -a /./Applications/Docker.app/Contents/MacOS/Docker;\
 	    fi;\
 	sleep 1;\

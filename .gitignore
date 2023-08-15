@@ -1,3 +1,4 @@
+APP_KEY
 !*akefile
 **.DS_Store
 github-actions-demo/
@@ -39,3 +40,5 @@ coverage
 .env
 tmp
 .pnpm-store
+.gnostr/gnostr-proxy
+.gnostr/lfs

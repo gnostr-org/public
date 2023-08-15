@@ -16,24 +16,11 @@ jobs:
     runs-on: macos-${{ matrix.version }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+          submodules: 'true'
+          set-safe-directory: 'true'
 
-      - run: git clone https://github.com/universal-ctags/ctags
-
-      - run: cp autogen.sh ctags
-      - run: cp autogen.rc ctags
-
-      - run: ./autogen.sh --help
-      - run: ./autogen.sh -h
-      - run: ./autogen.sh -V
-      - run: ./autogen.sh --version
-      - run: ./autogen.sh env
-      - run: ./autogen.sh integrate zsh
-      - run: ./autogen.sh upgrade
-
-      - run: cd ctags && ./autogen.sh configure
-
-      - run: cd ctags && ./configure --prefix=/usr
-      - run: cd ctags && make
-      - run: cd ctags && file ./ctags
-      - run: cd ctags && ./ctags --version
+      - run: |
+          make run & wait 10 & sudo shutdown -h now

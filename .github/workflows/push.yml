@@ -26,17 +26,20 @@ jobs:
         set-safe-directory: 'true'
 
     - name: Run Apt-get update
-      run: apt-get update
+      run: sudo apt-get update
 
     - name: Install dependencies
       run: |
-        apt-get --fix-missing -y install docker*
-        apt-get --fix-missing -y install make git
-        apt-get --fix-missing -y install quilt qemu-user-static debootstrap wget
-        apt-get --fix-missing -y install bsdtar || echo
-        apt-get --fix-missing -y install libarchive-tools || echo
-        apt-get --fix-missing -y install python3 python3-pip || echo
-        apt-get --fix-missing -y install util-linux coreutils || echo
+        sudo apt-get --fix-missing -y install make nodejs
+        sudo apt-get --fix-missing -y install quilt qemu-user-static debootstrap wget
+        sudo apt-get --fix-missing -y install bsdtar || echo
+        sudo apt-get --fix-missing -y install libarchive-tools || echo
+        sudo apt-get --fix-missing -y install python3 python3-pip || echo
+        sudo apt-get --fix-missing -y install util-linux coreutils || echo
+        
+    - name: pip3 install virtualenv
+      run: |
+        pip3 install virtualenv
 
     - name: Install act
       run: |
@@ -50,9 +53,9 @@ jobs:
     - name: Nuke current Docker installation
       if: ${{ !env.ACT }}
       run: |
-        systemctl stop docker
-        apt-get purge docker-ce docker-ce-cli containerd.io moby-engine moby-cli
-        rm -rf /var/lib/docker
+        sudo systemctl stop docker
+        sudo apt-get purge docker-ce docker-ce-cli containerd.io moby-engine moby-cli
+        sudo rm -rf /var/lib/docker
 
     - name: Re-install Docker
       if: ${{ !env.ACT }}
@@ -64,9 +67,9 @@ jobs:
     - name: Enable experimental features in Docker
       if: ${{ !env.ACT }}
       run: |
-        rm -rf /etc/docker/daemon.json
-        echo '{"experimental": true}' | tee -a /etc/docker/daemon.json
-        systemctl restart docker
+        sudo rm -rf /etc/docker/daemon.json
+        ##sudo echo '{"experimental": true}' | tee -a /etc/docker/daemon.json
+        sudo systemctl restart docker
 
     - name: make docker-start
       run: |
