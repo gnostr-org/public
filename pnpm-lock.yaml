@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@adonisjs/ace':
+    specifier: 11.3.1
+    version: 11.3.1(@adonisjs/application@5.3.0)
   '@adonisjs/core':
     specifier: ^5.9.0
     version: 5.9.0
