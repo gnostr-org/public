@@ -180,7 +180,7 @@ env:
 	@echo -e "DRIVE_DISK=local"                         >>.env
 	@echo -e "SESSION_DRIVER=cookie"                    >>.env
 	@echo -e "CACHE_VIEWS=false"                        >>.env
-	@echo -e "PROXY_URL=ws://relay.gnostr.org"          >>.env
+	@echo -e "PROXY_URL=ws://127.0.0.1:6102"            >>.env
 	@echo RELAYS=$(RELAYS)                              >>.env
 	#@cat .env > .env.example
 .PHONY:pnpm
