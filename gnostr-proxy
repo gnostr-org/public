@@ -11,7 +11,7 @@ export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] >/dev/null && \. "$NVM_D
 (\
 
 mkdir -p .gnostr;\
-[ ! -d .gnostr/proxy ] && git clone --depth 1 --branch master https://github.com/gnostr-org/gnostr-proxy.git .gnostr/proxy; \
-[   -d .gnostr/proxy ] && cd .gnostr/proxy && git reset --hard && git config pull.rebase true && git pull -f origin master && echo ".gnostr/lfs" >> .gitignore && make run;\
+[ ! -d .gnostr/gnostr-proxy ] && git clone --depth 1 --branch master https://github.com/gnostr-org/gnostr-proxy.git .gnostr/proxy; \
+[   -d .gnostr/proxy ] && cd .gnostr/proxy && git reset --hard && git pull -f origin master && echo ".gnostr/proxy" >> .gitignore && make run;\
 )#>/tmp/gnostr-proxy.log;
 
