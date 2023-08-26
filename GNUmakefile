@@ -112,7 +112,8 @@ export GIT_REPO_NAME
 GIT_REPO_PATH                           := $(HOME)/$(GIT_REPO_NAME)
 export GIT_REPO_PATH
 
-RELAYS                                  =$(shell curl  'https://api.nostr.watch/v1/online' 2>/dev/null | tr -d '[ " ]')
+##TODO: make this more dynamic yet robust
+RELAYS                                  =$(shell cat .relays)
 export RELAYS
 
 
@@ -317,6 +318,10 @@ tag:
 	@git tag $(OS)-$(OS_VERSION)-$(ARCH)-$(shell date +%s)
 	@git push -f --tags || echo "unable to push tags..."
 
+
+test:
+	@gnostr --sec $(shell gnostr-sha256) --envelope --content  "$(shell curl -s http://127.0.0.1:6102 | grep "<li>" | sed 's/<li>//' | sed 's/<\/li\>//')"
+	@gnostr --sec $(shell gnostr-sha256) --envelope --content  "$(shell curl -s http://127.0.0.1:6102 | grep "<li>" | sed 's/<li>//' | sed 's/<\/li\>//')" | gnostr-cat -u ws://127.0.0.1:6102
 -include Makefile
 -include venv.mk
 -include act.mk
