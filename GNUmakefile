@@ -195,7 +195,7 @@ run-dev:run## 	run-dev
 run-production:## 	run-production
 	@npm run build && install .env build/ && cd build && pnpm install --prod && node server.js
 lynx-dump:
-	@type -P lynx && lynx -dump -nolist http://localhost:6102 #&& \
+	@type -P lynx && lynx -dump -nolist http://localhost:6102 || echo #&& \
     #make lynx-dump | jq -R
 
 install:## 	install
