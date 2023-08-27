@@ -200,8 +200,7 @@ lynx-dump:
 	@type -P lynx && lynx -dump -nolist http://127.0.0.1:6102 || echo #&& \
     #make lynx-dump | jq -R
 
-install:## 	install
-	@npm install @pnpm/exe -g --force && pnpm install -g --force
+install:env pnpm## 	install
 	@install gnostr-proxy /usr/local/bin/
 
 .PHONY: report
