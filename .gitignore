@@ -42,3 +42,4 @@ tmp
 .pnpm-store
 .gnostr/lfs
 .gnostr/proxy
+.nvmrc
