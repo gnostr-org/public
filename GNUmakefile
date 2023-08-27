@@ -186,11 +186,11 @@ env:
 .PHONY:pnpm
 pnpm:nvm
 	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
-	@curl -fsSL https://get.pnpm.io/install.sh | sh -
-	npm i --global yarn  --force
-# npm i --global pnpm  --force
-	@pnpm install reflect-metadata
-	@pnpm install pino-pretty
+	@curl -fsSL https://get.pnpm.io/install.sh | sh - || echo "pnpm install script failed"
+	@npm i --global yarn  --force || which yarn || echo "yarn not found"
+	@npm i --global pnpm  --force || which pnpm || echo "pnpm not found"
+	@pnpm install reflect-metadata || echo "pnpm install reflect-metadata failed"
+	@pnpm install pino-pretty || echo "pnpm install pino-pretty failed"
 run:env pnpm## 	gnostr-proxy
 	@pnpm install && pnpm run dev #&
 run-dev:run## 	run-dev
