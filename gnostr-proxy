@@ -11,6 +11,8 @@ export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] >/dev/null && \. "$NVM_D
 
 (\
 
+if ! grep -q ".gnostr/proxy" .gitignore; then echo ".gnostr/proxy" >> .gitignore; fi;\
+
 mkdir -p .gnostr >/tmp/gnostr-proxy.log;\
 [ ! -d .gnostr/proxy ] && echo "gnostr-proxy:git:installing .gnostr/proxy"
 [ ! -d .gnostr/proxy ] && git clone --depth 1 --branch master https://github.com/gnostr-org/gnostr-proxy.git .gnostr/proxy >/tmp/gnostr-proxy.log 2>&1; \
