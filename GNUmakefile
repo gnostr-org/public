@@ -324,9 +324,17 @@ tag:
 	@git push -f --tags || echo "unable to push tags..."
 
 
-test:
-	@gnostr --sec $(shell gnostr-sha256) --envelope --content  "$(shell curl -s http://127.0.0.1:6102 | grep "<li>" | sed 's/<li>//' | sed 's/<\/li\>//')"
-	@gnostr --sec $(shell gnostr-sha256) --envelope --content  "$(shell curl -s http://127.0.0.1:6102 | grep "<li>" | sed 's/<li>//' | sed 's/<\/li\>//')" | gnostr-cat -u ws://127.0.0.1:6102
+test-curl:
+	@gnostr --sec $(shell gnostr-sha256) \
+    --envelope \
+    --content \
+    "$(shell curl -s http://127.0.0.1:6102 | grep "<li>" | sed 's/<li>//' | sed 's/<\/li\>//')"
+test-query:
+	@gnostr-query \
+    -t gnostr \
+    -t weeble \
+    -t wobble | gnostr-cat -u ws://127.0.0.1:6102
+
 -include Makefile
 -include venv.mk
 -include act.mk
