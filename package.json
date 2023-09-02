@@ -1,10 +1,12 @@
 {
   "name": "gnostr-proxy",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "node ace serve --watch",
     "build": "node ace build --production --ignore-ts-errors",
+    "pnpm-build-start": "pnpm exec node ace build --production --ignore-ts-errors && cd build && install ../.env . && pnpm install --production && pnpm exec node server.js",
+    "pnpm-build-start-quiet": "pnpm exec node ace build --production --ignore-ts-errors && cd build && install ../.env . && pnpm install --production && pnpm exec node server.js >/tmp/gnostr-proxy.log",
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
@@ -80,7 +82,6 @@
     "reflect-metadata": "^0.1.13",
     "sha256": "link:@noble/hashes/sha256",
     "source-map-support": "^0.5.21",
-    "standalone": "link:@adonisjs/core/build/standalone",
     "uuid": "^9.0.0",
     "ws": "^8.12.0"
   }
