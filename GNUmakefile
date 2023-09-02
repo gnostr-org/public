@@ -195,7 +195,7 @@ pnpm:nvm
 	@pnpm install pino-pretty || echo "pnpm install pino-pretty failed"
 	@pnpm install @adonisjs/core/build/standalone || echo "pnpm install @adonisjs/core/build/standalone failed..."
 
-run:env pnpm## 	gnostr-proxy
+run:pnpm env## 	gnostr-proxy
 	@pnpm install && pnpm run dev #&
 run-dev:run## 	run-dev
 run-production:## 	run-production
@@ -204,7 +204,7 @@ lynx-dump:
 	@type -P lynx && lynx -dump -nolist http://127.0.0.1:6102 || echo #&& \
     #make lynx-dump | jq -R
 
-install:env pnpm## 	install
+install:pnpm env## 	install
 	@install gnostr-proxy /usr/local/bin/
 
 .PHONY: report
