@@ -191,6 +191,8 @@ pnpm:nvm
 	@npm i --global pnpm  --force || which pnpm || echo "pnpm not found"
 	@pnpm install reflect-metadata || echo "pnpm install reflect-metadata failed"
 	@pnpm install pino-pretty || echo "pnpm install pino-pretty failed"
+	@pnpm install @adonisjs/core/build/standalone || echo "pnpm install @adonisjs/core/build/standalone failed..."
+
 run:env pnpm## 	gnostr-proxy
 	@pnpm install && pnpm run dev #&
 run-dev:run## 	run-dev
