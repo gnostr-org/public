@@ -187,7 +187,7 @@ env:
 #@cat .env > .env.example
 .PHONY:pnpm
 pnpm:nvm
-	$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
+	@$(shell echo node ace generate:key) | sed 's/>.*//' > APP_KEY && cat APP_KEY
 	@curl -fsSL https://get.pnpm.io/install.sh | sh - || echo "pnpm install script failed"
 	@npm i --global yarn  --force || which yarn || echo "yarn not found"
 	@npm i --global pnpm  --force || which pnpm || echo "pnpm not found"
