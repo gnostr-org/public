@@ -117,9 +117,9 @@ RELAYS                                  =$(shell cat .relays)
 export RELAYS
 
 
-NODE_VERSION                            :=v16.14.2
+NODE_VERSION                            :=v18.17.1
 export NODE_VERSION
-NODE_ALIAS                              :=v16.14.0
+NODE_ALIAS                              :=v18.17.0
 export NODE_ALIAS
 NVM_DIR                                 :=$(HOME)/.nvm
 export NVM_DIR
