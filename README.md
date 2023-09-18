@@ -5,10 +5,10 @@
 
 ### For content extraction command examples:
 
-#### install gnostr-cat:
+#### npm run install-all:
 
 ```
-cargo install gnostr-cat
+npm run install-all
 ```
 
 #### install curl, jq and python3
@@ -26,11 +26,7 @@ https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query
 gnostr-cat -u ws://127.0.0.1:6102 | jq
 ```
 
-
-
-https://github.com/gnostr-org/gnostr-web/assets/152159/833844d8-6be3-46d7-9acc-2e503ab70416
-
-
+EVENT 
 
 ## The CSS Stylesheet as kind 5393
 
