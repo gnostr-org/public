@@ -26,7 +26,11 @@ https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query
 gnostr-cat -u ws://127.0.0.1:6102 | jq
 ```
 
-EVENT 
+
+
+https://github.com/gnostr-org/gnostr-web/assets/152159/833844d8-6be3-46d7-9acc-2e503ab70416
+
+
 
 ## The CSS Stylesheet as kind 5393
 
