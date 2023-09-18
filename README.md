@@ -23,8 +23,7 @@ gnostr-query -i \
 7ccda059f9f4b7ddfe8e39aa4f3a41f2c262bfee9203b5894eff36a8f9499a05 | \
 gnostr-cat -u \
 ws://localhost:6102 | \
-jq .[] | \
-jq .content
+jq .[2].content
 ```
 
 ## The Picture as Kind 1065/1064
@@ -62,8 +61,7 @@ gnostr-query -i \
 3c55892674bd88431fd0d9b611e96e65c91802a128596bf3bcd6ca6c4aa2d5c7 | \
 gnostr-cat -u \
 ws://localhost:6102 | \
-jq .[] | \
-jq .content
+jq .[2].content
 ```
 
 ## The JS JavaScript as kind 5394
@@ -109,9 +107,36 @@ gnostr-query -i \
 1efc13c6ffbaf60c0347baf89f6ecaad22f74abf82165fcdb55ef7e8cca8a597 | \
 gnostr-cat -u \
 ws://localhost:6102 | \
-jq .[] | \
-jq .content
+jq .[2].content
 ```
+
+```
+gnostr-query -i \
+1efc13c6ffbaf60c0347baf89f6ecaad22f74abf82165fcdb55ef7e8cca8a597 | \
+gnostr-cat -u \
+ws://localhost:6102 | \
+jq .[2].content | \
+sed 's/\"//' | \
+rev | \
+sed 's/\"//' | \
+rev
+```
+
+
+```
+gnostr-query -i \
+1efc13c6ffbaf60c0347baf89f6ecaad22f74abf82165fcdb55ef7e8cca8a597 | \
+gnostr-cat -u \
+ws://localhost:6102 | \
+jq .[2].content | \
+sed 's/\"//' | \
+rev | \
+sed 's/\"//' | \
+rev | \
+sed 's/<!DOCTYPE html>//' | \
+pandoc -o index.html
+```
+
 
 ```
 gnostr-query -i \
