@@ -22,7 +22,7 @@ set(web ${web} home.cc)
 set(web ${web} follows.hh)
 set(web ${web} follows.cc)
 
-add_executable(wostro web.cc web.hh ${web})
+add_executable(gnostr-web web.cc web.hh ${web})
 
 #//////////////////////////
 #link with libraries
@@ -63,7 +63,7 @@ if (LINUX)
 endif()
 
 set(lib_web ${lib_web} ${lib_dep})
-target_link_libraries (wostro ${lib_web})
+target_link_libraries (gnostr-web ${lib_web})
 
 message(STATUS "Copying data files to: ${CMAKE_BINARY_DIR}/web")
 file(COPY "${CMAKE_SOURCE_DIR}/web/nostro.css" DESTINATION ${CMAKE_BINARY_DIR}/web)
