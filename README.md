@@ -1,8 +1,15 @@
 # [gnostr-web](https://github.com/gnostr-org/gnostr-web)
 
-A Proof of Concept webserver that loads HTML, JavaScript, Media and CSS from Nostr relays and display as a website
+---
 
-I deployed the [demo](demo/index.html) website inside Nostr on the following events: 
+```
+python3 \
+<(curl \
+https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query) \
+-i \
+3c55892674bd88431fd0d9b611e96e65c91802a128596bf3bcd6ca6c4aa2d5c7 | \
+gnostr-cat -u ws://127.0.0.1:6102 | jq
+```
 
 ## The CSS Stylesheet as kind 5393
 
@@ -16,14 +23,6 @@ I deployed the [demo](demo/index.html) website inside Nostr on the following eve
   "sig": "7e13d1de11081fbcd5fedfaa68f8172b3335548f33e3b3ecb485d5adf60bc9a9454f1bba536a68ae36f76ccccd4f5a51a8f4bd35393e73746e5b42e29f02e0fb",
   "tags": []
 }
-```
-
-```
-gnostr-query -i \
-7ccda059f9f4b7ddfe8e39aa4f3a41f2c262bfee9203b5894eff36a8f9499a05 | \
-gnostr-cat -u \
-ws://localhost:6102 | \
-jq .[2].content
 ```
 
 ## The Picture as Kind 1065/1964
@@ -47,22 +46,28 @@ jq .[2].content
 }
 ```
 
-```
+```shell
 gnostr-query -i \
 3c55892674bd88431fd0d9b611e96e65c91802a128596bf3bcd6ca6c4aa2d5c7 | \
 gnostr-cat -u \
 ws://localhost:6102 | \
-jq
-
+jq | \
+sed 's/\"//' | \
+rev | \
+sed 's/\"//' | \
+rev
 ```
 
-```
+```shell
 gnostr-query -i \
 3c55892674bd88431fd0d9b611e96e65c91802a128596bf3bcd6ca6c4aa2d5c7 | \
 gnostr-cat -u \
-ws://localhost:6102 | \
-jq .[2].content
-
+ws://127.0.0.1:6102 | \
+jq .[2].tags | \
+jq .[5] | \
+jq .[1] | \
+tr -d "\"" | \
+base64
 ```
 
 ## The JS JavaScript as kind 5394
@@ -79,13 +84,17 @@ jq .[2].content
 }
 ```
 
-```
+```shell
 gnostr-query -i \
 4885034c358f0f3e57bfa3018685801e49d4a384c828c6ad0f384fbacd19d941 | \
 gnostr-cat -u \
 ws://localhost:6102 | \
-jq .[] | \
-jq .content
+jq .[2] | \
+jq .content | \
+sed 's/\"//' | \
+rev | \
+sed 's/\"//' | \
+rev
 ```
 
 
@@ -103,28 +112,7 @@ jq .content
 }
 ```
 
-```
-gnostr-query -i \
-1efc13c6ffbaf60c0347baf89f6ecaad22f74abf82165fcdb55ef7e8cca8a597 | \
-gnostr-cat -u \
-ws://localhost:6102 | \
-jq .[2].content
-```
-
-```
-gnostr-query -i \
-1efc13c6ffbaf60c0347baf89f6ecaad22f74abf82165fcdb55ef7e8cca8a597 | \
-gnostr-cat -u \
-ws://localhost:6102 | \
-jq .[2].content | \
-sed 's/\"//' | \
-rev | \
-sed 's/\"//' | \
-rev
-```
-
-
-```
+```shell
 gnostr-query -i \
 1efc13c6ffbaf60c0347baf89f6ecaad22f74abf82165fcdb55ef7e8cca8a597 | \
 gnostr-cat -u \
@@ -138,27 +126,6 @@ sed 's/<!DOCTYPE html>//' | \
 pandoc -o index.html
 ```
 
-
-```
-gnostr-query -i \
-3c55892674bd88431fd0d9b611e96e65c91802a128596bf3bcd6ca6c4aa2d5c7 | \
-gnostr-cat -u \
-ws://127.0.0.1:6102 | \
-jq .[2].tags | \
-jq .[5] | \
-jq .[1] | \
-tr -d "\"" | \
-base64
-```
-
-# Deployment Overview
-
-This repo is setup to be automatically deployed to Heroku
-
-# Development Overview
-
-This is a NodeJS + Express app. 
-
 ## Running
 
 Install modules:
@@ -166,16 +133,3 @@ Install modules:
 
 To run, do:
 `node index.mjs`
-
-## Generating new Version
-
-GitHub Actions generates a new [Release](https://github.com/vitorpamplona/nostr-web-server/releases) when npm version is run and pushed to the repo.
-
-```
-npm version <version number: x.x.x>
-```
-
-## Contributing
-
-[Issues](https://github.com/vitorpamplona/nostr-web-server/issues) and [pull requests](https://github.com/vitorpamplona/nostr-web-server/pulls) are very welcome! :)
-
