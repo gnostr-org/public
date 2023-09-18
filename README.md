@@ -1,4 +1,4 @@
-# [gnostr-proxy](https://github.com/gnostr-org/gnostr-proxy)/[public](https://github.com/gnostr-org/gnostr-web.git)
+# [gnostr-web](https://github.com/gnostr-org/gnostr-web)
 
 A Proof of Concept webserver that loads HTML, JavaScript, Media and CSS from Nostr relays and display as a website
 
@@ -26,7 +26,7 @@ ws://localhost:6102 | \
 jq .[2].content
 ```
 
-## The Picture as Kind 1065/1064
+## The Picture as Kind 1065/1964
 
 ```json
 {
@@ -62,6 +62,7 @@ gnostr-query -i \
 gnostr-cat -u \
 ws://localhost:6102 | \
 jq .[2].content
+
 ```
 
 ## The JS JavaScript as kind 5394
