@@ -9,7 +9,8 @@ const defaultRelays = [
     'wss://nostr.mom',
     'wss://nos.lol',
     'wss://relay.mostr.pub',
-    'wss://relay.damus.io'
+    'wss://relay.damus.io',
+    'ws://127.0.0.1:6102'
 ]
 
 const ndk = new NDK({ explicitRelayUrls: defaultRelays, signer: nip07signer });
