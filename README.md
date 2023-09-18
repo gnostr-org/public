@@ -2,7 +2,6 @@
 
 ---
 
-
 ### For content command examples:
 
 #### npm run install-all:
@@ -17,15 +16,22 @@ OR
 
 ---
 
-### gnostr-query
+### gnostr-query > public/app.js
 
 ```shell
-python3 \
-<(curl \
+python3 <(curl -s \
 https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query) \
 -i \
 4885034c358f0f3e57bfa3018685801e49d4a384c828c6ad0f384fbacd19d941 | \
-gnostr-cat -u ws://127.0.0.1:6102 | jq
+gnostr-cat \
+-u \
+ws://127.0.0.1:2016 | \
+jq .[2].content | \
+sed 's/\"//' | \
+rev | \
+sed 's/\"//' | \
+sed 's/\\n//' | \
+rev > public/app.js
 ```
 
 ## The CSS Stylesheet as kind 5393
@@ -41,7 +47,6 @@ gnostr-cat -u ws://127.0.0.1:6102 | jq
   "tags": []
 }
 ```
-
 
 ## The Picture as Kind 1065/1964
 
@@ -144,7 +149,6 @@ sed 's/<!DOCTYPE html>//' | \
 pandoc -o index.html
 ```
 
-
 ---
 
 ## Publishing in "gnostr" context
@@ -160,7 +164,6 @@ set PORT=6102 && set RELAY_COMMAND="gnostr-cat -u ws://127.0.0.1:$PORT" && gnost
 ```
 
 ---
-
 
 ## Running
 
