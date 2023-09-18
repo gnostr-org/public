@@ -46,6 +46,13 @@ https://github.com/gnostr-org/gnostr-web/assets/152159/833844d8-6be3-46d7-9acc-2
 }
 ```
 
+#### publishing and extraction in "gnostr" context
+
+```
+ set RELAY_COMMAND="gnostr-cat -u ws://127.0.0.1" && gnostr --sec $(gnostr-sha256) --kind 5393 --tag gnostr gnostr --tag gnostr-web gnostr-web  --envelope --content "$(cat public/app.css)" | $RELAY_COMMAND && gnostr-query -a a34b99f22c790c4e36b2b3c2c35a36db06226e41c692fc82b8b56ac1c540c5bd --kind 5393 -l 1 | $RELAY_COMMAND
+```
+
+
 ## The Picture as Kind 1065/1964
 
 ```json
