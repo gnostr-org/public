@@ -5,3 +5,5 @@ bash_profile.log
 demo/bash_profile.log
 **pnpm-lock.yaml
 reflog
+.nvmrc
+.gnostr/proxy
