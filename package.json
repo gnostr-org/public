@@ -1,8 +1,8 @@
 
 {
-  "name": "amethyst-web-server",
+  "name": "gnostr-web",
   "version": "0.0.1",
-  "description": "Amethyst's Web Server",
+  "description": "gnostr-web: publish and extract web content",
   "main": "index.mjs",
   "_comment": "https://docs.npmjs.com/cli/v10/using-npm/scripts",
   "scripts": {
