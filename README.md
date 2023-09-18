@@ -62,6 +62,7 @@ gnostr-query -i \
 gnostr-cat -u \
 ws://localhost:6102 | \
 jq .[2].content
+
 ```
 
 ## The JS JavaScript as kind 5394
