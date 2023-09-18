@@ -1,17 +1,19 @@
-# [gnostr-web](https://github.com/gnostr-org/gnostr-web)
+# [gnostr-web](https://github.com/gnostr-org/gnostr-web) - publishing and extraction
 
 ---
 
 
-### For content extraction command examples:
+### For content command examples:
 
 #### npm run install-all:
 
-```
-npm run install-all
-```
+#### `npm run install-all`
 
-#### install curl, jq and python3
+OR
+
+#### `npm install-curl`
+#### `npm install-jq`
+#### `npm install-python3`
 
 ---
 
@@ -44,12 +46,6 @@ https://github.com/gnostr-org/gnostr-web/assets/152159/833844d8-6be3-46d7-9acc-2
   "sig": "7e13d1de11081fbcd5fedfaa68f8172b3335548f33e3b3ecb485d5adf60bc9a9454f1bba536a68ae36f76ccccd4f5a51a8f4bd35393e73746e5b42e29f02e0fb",
   "tags": []
 }
-```
-
-#### publishing and extraction in "gnostr" context
-
-```
- set RELAY_COMMAND="gnostr-cat -u ws://127.0.0.1" && gnostr --sec $(gnostr-sha256) --kind 5393 --tag gnostr gnostr --tag gnostr-web gnostr-web  --envelope --content "$(cat public/app.css)" | $RELAY_COMMAND && gnostr-query -a a34b99f22c790c4e36b2b3c2c35a36db06226e41c692fc82b8b56ac1c540c5bd --kind 5393 -l 1 | $RELAY_COMMAND
 ```
 
 
@@ -153,6 +149,24 @@ rev | \
 sed 's/<!DOCTYPE html>//' | \
 pandoc -o index.html
 ```
+
+
+---
+
+## Publishing in "gnostr" context
+
+```
+ set RELAY_COMMAND="gnostr-cat -u ws://127.0.0.1" && gnostr --sec $(gnostr-sha256) --kind 5393 --tag gnostr gnostr --tag gnostr-web gnostr-web  --envelope --content "$(cat public/app.css)" 
+```
+
+## Extracting in "gnostr" context
+
+```
+set PORT=6102 && set RELAY_COMMAND="gnostr-cat -u ws://127.0.0.1:$PORT" && gnostr-query -a a34b99f22c790c4e36b2b3c2c35a36db06226e41c692fc82b8b56ac1c540c5bd --kind 5393 -g weeble 2097 | $RELAY_COMMAND
+```
+
+---
+
 
 ## Running
 
