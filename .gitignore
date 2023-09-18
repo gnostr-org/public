@@ -7,3 +7,4 @@ demo/bash_profile.log
 reflog
 .nvmrc
 .gnostr/proxy
+.gnostr/web
