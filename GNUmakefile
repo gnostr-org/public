@@ -83,6 +83,13 @@ PROJECT_NAME                            := $(project)
 endif
 export PROJECT_NAME
 
+ifeq ($(port),)
+PORT                                    := 2016
+else
+PORT                                    := $(port)
+endif
+export PORT
+
 GIT_USER_NAME                           := $(shell git config user.name || echo $(PROJECT_NAME))
 export GIT_USER_NAME
 GH_USER_NAME                            := $(shell git config user.name || echo $(PROJECT_NAME))
@@ -173,14 +180,14 @@ help:## 	verbose help
 	@sed -n 's/^## //p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
 .ONESHELL:
 env:
-	@echo -e "PORT=6102"                                 >.env
+	@echo -e "PORT=${PORT}"                              >.env
 	@echo -e "HOST=0.0.0.0"                             >>.env
 	@echo -e "NODE_ENV=development"                     >>.env
 	@echo -e "APP_KEY=UgSS9o_p04BZ0duSOyJ1kz6TjlTXoOaE" >>.env
 	@echo -e "DRIVE_DISK=local"                         >>.env
 	@echo -e "SESSION_DRIVER=cookie"                    >>.env
 	@echo -e "CACHE_VIEWS=false"                        >>.env
-	@echo -e "PROXY_URL=ws://127.0.0.1:6102"            >>.env
+	@echo -e "PROXY_URL=ws://127.0.0.1:${PORT}"         >>.env
 	@echo RELAYS=$(RELAYS)                              >>.env
 	@git update-index --assume-unchanged .env
 	@git update-index --assume-unchanged APP_KEY
@@ -201,7 +208,7 @@ run-dev:run## 	run-dev
 run-production:## 	run-production
 	@npm run build && install .env build/ && cd build && pnpm install --prod && node server.js
 lynx-dump:
-	@type -P lynx && lynx -dump -nolist http://127.0.0.1:6102 || echo #&& \
+	@type -P lynx && lynx -dump -nolist http://127.0.0.1:2106 || echo #&& \
     #make lynx-dump | jq -R
 
 install:pnpm env## 	install
@@ -324,16 +331,32 @@ tag:
 	@git push -f --tags || echo "unable to push tags..."
 
 
+.PHONY:public/app.js
+public/app.js:
+	python3 <(curl -s \
+		https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query) \
+		-i \
+		4885034c358f0f3e57bfa3018685801e49d4a384c828c6ad0f384fbacd19d941 | \
+		gnostr-cat \
+		-u \
+		ws://127.0.0.1:${PORT} | \
+		jq .[2].content | \
+		sed 's/\"//' | \
+		rev | \
+		sed 's/\"//' | \
+		sed 's/\\n//' | \
+		rev > public/app.js
+
 test-curl:
 	@gnostr --sec $(shell gnostr-sha256) \
     --envelope \
     --content \
-    "$(shell curl -s http://127.0.0.1:6102 | grep "<li>" | sed 's/<li>//' | sed 's/<\/li\>//')"
+    "$(shell curl -s http://127.0.0.1:${PORT} | grep "<li>" | sed 's/<li>//' | sed 's/<\/li\>//')"
 test-query:
 	@gnostr-query \
     -t gnostr \
     -t weeble \
-    -t wobble | gnostr-cat -u ws://127.0.0.1:6102
+    -t wobble | gnostr-cat -u ws://127.0.0.1:${PORT}
 
 #-include Makefile
 -include venv.mk
