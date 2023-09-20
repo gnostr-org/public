@@ -4,8 +4,6 @@
   "description": "gnostr-web: publish and extract web content",
   "main": "index.mjs",
   "_comment": "https://docs.npmjs.com/cli/v10/using-npm/scripts",
-  "name": "gnostr-proxy",
-  "version": "0.0.4",
   "private": true,
   "scripts": {
     "start": "$(which node) .",
