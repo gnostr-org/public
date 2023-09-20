@@ -16,7 +16,7 @@
     "install-curl": "type -P curl || $(which apt-get >/tmp/gnostr-web.log || which brew) install curl",
     "install-python3": "type -P python3 || $(which apt-get || which brew) install python3",
     "gnostr-query": "$(which python3) <($(which curl) https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query) -i 4885034c358f0f3e57bfa3018685801e49d4a384c828c6ad0f384fbacd19d941 | $(which gnostr-cat) -u ws://127.0.0.1:6102 | $(which jq)",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node ace serve --watch",
     "build": "node ace build --production --ignore-ts-errors",
     "pnpm-build-start": "pnpm exec node ace build --production --ignore-ts-errors && cd build && install ../.env . && pnpm install --production && pnpm exec node server.js",
@@ -85,7 +85,7 @@
     "express": "^4.18.2",
     "pino-pretty": "10.2.0",
     "reflect-metadata": "0.1.13",
-    "standalone": "link:@adonisjs/core/build/standalone"
+    "standalone": "link:@adonisjs/core/build/standalone",
     "@adonisjs/ace": "11.3.1",
     "@adonisjs/core": "^5.9.0",
     "@adonisjs/repl": "^3.1.0",
