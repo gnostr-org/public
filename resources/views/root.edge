@@ -3,7 +3,13 @@
 @entryPointStyles('app')
 @entryPointScripts('app')
 
-</head><body><div class="container"><div class="content"><div class="header"><h1 class="title">gnostr-<span class="gradient">proxy</span></h1><span class="subtitle">Using this proxy, you save {{ relaysCount }} WS connections.</span></div><input type="text" disabled class="copy-text" value="{{proxyUrl}}"><span>🟢 Connected {{relays.filter(relay => relay.connected).length}}/{{relaysCount}}</span><ul>
+</head><body>
+<div class="container">
+  <div class="content">
+    <div class="header">
+      <h1 class="title">gnostr-<span class="gradient">proxy</span></h1>
+      <span class="subtitle">Using this proxy, you save {{ relaysCount }} WS connections.</span>
+    </div>
 
 @each(relay in relays.filter(relay => relay.connected))
 
@@ -11,12 +17,9 @@
 
 @end
 
-</ul><span>🔴 Disconnected</span><ul>
 
-@each(relay in relays.filter(relay => !relay.connected))
-
-<li> {{ relay.url }} </li>
-
-@end
-
-</ul></div></div><div class="footer"><span><a href="https://github.com/dolu89/nostr-proxy">Github</a></span><span>Made with 💩 by Dolu</span><span>⚡️dolu89@ln.tips</span></div></body></html>
+</ul></div></div>
+<div class="footer">
+  <span><a href="https://github.com/gnostr-org/gnostr-proxy">Github</a></span>
+</div>
+</body></html>
