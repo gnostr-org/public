@@ -7,7 +7,7 @@
 #include "feed.hh"
 #include "follows.hh"
 
-std::string log_program_name("wostro");
+std::string log_program_name("gnostr/web");
 
 std::string pubkey;
 
