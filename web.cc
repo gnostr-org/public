@@ -7,7 +7,7 @@
 #include "feed.hh"
 #include "follows.hh"
 
-std::string log_program_name("wostro");
+std::string log_program_name("gnostr/web");
 
 std::string pubkey;
 
@@ -56,7 +56,7 @@ NostroApplication::NostroApplication(const Wt::WEnvironment& env)
   : WApplication(env)
 {
   useStyleSheet("nostro.css");
-  setTitle("Nostro");
+  setTitle("gnostr/web");
   root()->setStyleClass("yellow-box");
 
   auto container = std::make_unique<Wt::WContainerWidget>();
