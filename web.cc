@@ -56,7 +56,7 @@ NostroApplication::NostroApplication(const Wt::WEnvironment& env)
   : WApplication(env)
 {
   useStyleSheet("nostro.css");
-  setTitle("Nostro");
+  setTitle("gnostr/web");
   root()->setStyleClass("yellow-box");
 
   auto container = std::make_unique<Wt::WContainerWidget>();
