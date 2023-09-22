@@ -347,6 +347,29 @@ public/app.js:
 		sed 's/\\n//' | \
 		rev > public/app.js
 
+.PHONY:gnostr-relays
+gnostr-relays:
+	python3 <(curl -s \
+		https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query) \
+		-i \
+		4c92df1caab9ed480f5f8fd3b3b1b2b82a1710827615d6f1120ac5f9d740076c | \
+		gnostr-cat \
+		-u \
+		ws://127.0.0.1:${PORT} | \
+		jq .[2].content | \
+		sed 's/\"//' | \
+		rev | \
+		sed 's/\"//' | \
+		sed 's/\\n//' | \
+		rev > gnostr-relays && chmod +rwx gnostr-relays
+
+.PHONY:gnostr-relays2
+##4c92df1caab9ed480f5f8fd3b3b1b2b82a1710827615d6f1120ac5f9d740076c
+gnostr-relays2:
+	curl -s https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-relays > gnostr-relays && chmod +rwx gnostr-relays
+
+
+
 test-curl:
 	@gnostr --sec $(shell gnostr-sha256) \
     --envelope \
