@@ -212,7 +212,7 @@ lynx-dump:
     #make lynx-dump | jq -R
 
 install:pnpm env## 	install
-	@install gnostr-proxy /usr/local/bin/
+	@install gnostr-web /usr/local/bin/
 
 .PHONY: report
 report:## 	report
@@ -382,6 +382,7 @@ test-query:
     -t wobble | gnostr-cat -u ws://127.0.0.1:${PORT}
 
 #-include Makefile
+-include gnostr-act.mk
 -include venv.mk
 -include act.mk
 
