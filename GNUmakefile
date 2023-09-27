@@ -212,7 +212,6 @@ lynx-dump:
     #make lynx-dump | jq -R
 
 install:pnpm env## 	install
-	@install gnostr-web /usr/local/bin/
 
 .PHONY: report
 report:## 	report
