@@ -93,8 +93,8 @@ jobs:
 
       - name: "Build release"
         run: |
-          mv gnostr-web gnostr-web-$RUNNER_OS-$RUNNER_ARCH
-          shasum -a 256 gnostr-web-$RUNNER_OS-$RUNNER_ARCH > gnostr-web-$RUNNER_OS-$RUNNER_ARCH.sha256.txt
+          cat package-lock.json
+          cat pnpm-lock.yaml
           ls -a
 
       - name: Save state
@@ -110,6 +110,11 @@ jobs:
           title: "Pre-Release Build"
           files: |
             gnostr-*
+            ## we add these to the pre-release
+            ## because the node sucessfully built
+            ## with them
+            package-lock.yaml
+            pnpm-lock.yaml
 
       - name: Save deps
         id: cache-deps-save
