@@ -86,7 +86,8 @@ jobs:
 
       - run: python3 -m pip install virtualenv
 
-      - run: touch APP_KEY
+      - run: cargo install gnostr-sha256
+      - run: date +%s > APP_KEY && gnostr-sha256 $(cat APP_KEY)
       - run: V=1 make
       - run: V=1 make help
       - run: V=1 make install
@@ -107,6 +108,7 @@ jobs:
           prerelease: true
           title: "Pre-Release Build"
           files: |
+            gnostr-*
             *
 
       - name: Save deps
