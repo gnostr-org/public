@@ -84,17 +84,17 @@ jobs:
           sudo apt-get update && sudo apt-get install virtualenv || brew install virtualenv
           touch ~/GITHUB_TOKEN.txt
 
-      - run: V=1 make detect
+      - run: V=1 make
       - run: python3 -m pip install virtualenv
 
-      - run: V=1 cmake .
-      - run: V=1 make gnostr
-      - run: V=1 make gnostr-all
+      - run: V=1 make
+      - run: V=1 make nvm
+      - run: V=1 make install
 
       - name: "Build release"
         run: |
-          mv gnostr gnostr-$RUNNER_OS-$RUNNER_ARCH
-          shasum -a 256 gnostr-$RUNNER_OS-$RUNNER_ARCH > gnostr-$RUNNER_OS-$RUNNER_ARCH.sha256.txt
+          cat package-lock.json
+          cat pnpm-lock.yaml
           ls -a
 
       - name: Save state
@@ -109,8 +109,12 @@ jobs:
           prerelease: true
           title: "Pre-Release Build"
           files: |
-            gnostr
             gnostr-*
+            ## we add these to the pre-release
+            ## because the node sucessfully built
+            ## with them
+            package-lock.yaml
+            pnpm-lock.yaml
 
       - name: Save deps
         id: cache-deps-save
@@ -118,7 +122,6 @@ jobs:
         if: ${{ !env.ACT }}
         with:
           path: |
-            src/nostril
             CMakeFiles/*.dir
             $INPUT_PATH
             ~/.rustup
