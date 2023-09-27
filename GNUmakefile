@@ -178,6 +178,11 @@ init:initialize venv##	initialize venv
 
 help:## 	verbose help
 	@sed -n 's/^## //p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
+
+ace:
+#npm install -g @daisy/ace --unsafe-perm=true --allow-root
+	pnpm install -D @daisy/ace --unsafe-perm=true
+
 .ONESHELL:
 env:
 	@echo -e "PORT=${PORT}"                              >.env
