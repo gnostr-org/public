@@ -212,7 +212,6 @@ lynx-dump:
     #make lynx-dump | jq -R
 
 install:pnpm env## 	install
-	@install gnostr-web /usr/local/bin/
 
 .PHONY: report
 report:## 	report
@@ -349,13 +348,14 @@ public/app.js:
 
 .PHONY:gnostr-relays
 gnostr-relays:
+	type -P gnostr-cat || cargo install gnostr-cat || echo "install cargo and rust"
 	python3 <(curl -s \
 		https://raw.githubusercontent.com/gnostr-org/gnostr/master/template/gnostr-query) \
 		-i \
 		4c92df1caab9ed480f5f8fd3b3b1b2b82a1710827615d6f1120ac5f9d740076c | \
 		gnostr-cat \
 		-u \
-		ws://127.0.0.1:${PORT} | \
+		wss://nos.lol | \
 		jq .[2].content | \
 		sed 's/\"//' | \
 		rev | \
