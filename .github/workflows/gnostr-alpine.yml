@@ -42,13 +42,11 @@ jobs:
           submodules: 'true'
           set-safe-directory: 'true'
       ## notice: these are post checkout steps
-      - run: apk update && apk add autoconf automake build-base openssl-dev libtool make
+      - run: apk update && apk add autoconf automake binutils build-base coreutils curl findutils git grep libtool make openssl-dev util-linux
+      - run: git config --global --add safe.directory /__w/gnostr-web/gnostr-web
       - run: touch ~/GITHUB_TOKEN.txt
-      - run: rm CMakeCache.txt || echo && cmake .
       - run: make
       - run: make help
-      - run: make libsecp256k1.a || rm -rf deps/secp256k1 && make libsecp256k1.a
-      - run: make gnostr || rm gnostr && make gnostr
-      - run: make gnostr-install
+      - run: make install
       ## TODO: add ssh config to act sequence
       - run: rm -rf .venv
