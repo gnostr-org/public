@@ -16,6 +16,8 @@ std::vector<std::string> relays = { "eden.nostr.land",
 "relay.snort.social",
 "relay.damus.io",
 "nostr.wine",
+//this is gnostr-proxy
+"127.0.0.1:6102",
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
