@@ -28,16 +28,14 @@ if (!shell.which('gnostr-sha256')) {
 // console.log(shell.which('gnostr-sha256'));
 
 var body = shell.exec('gnostr --sec $(gnostr-sha256)');
-console.log(body);
+//console.log(body);
 
 
 const { argv } = require('node:process');
 const process = require('node:process');
 const path = require('node:path');
-
 const { cwd } = require('node:process');
-
-console.log(`cwd=${cwd()}`);
+// console.log(`cwd=${cwd()}`);
 
 // print process.argv
 argv.forEach((val, index) => {
