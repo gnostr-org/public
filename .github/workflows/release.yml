@@ -11,7 +11,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    permissions: write-all
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     env:
       GNOSTR: "gnostr"
       GNOSTR_ACT: "gnostr-act"
