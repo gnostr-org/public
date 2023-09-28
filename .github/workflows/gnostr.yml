@@ -80,7 +80,7 @@ jobs:
       - run: python3 -m pip install virtualenv
       - run: npm install -g @pnpm/exe
       - run: make
-      - run: make run
+
       - name: Save deps
         id: cache-deps-save
         uses: actions/cache/save@v3
@@ -154,7 +154,6 @@ jobs:
 
       - run: cargo install gnostr-cat
       - run: V=1 make
-      - run: V=1 make public/app.js
 
       - name: Save deps
         id: cache-deps-save
