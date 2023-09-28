@@ -14,4 +14,10 @@ CMakeFiles/
 cmake_install.cmake
 wostro
 CMakeCache.txt
+
+nostro.log.txt
 wostro.log.txt
+nostro_event.json
+
+gnostr-web
+gnostr-relays

@@ -1,4 +1,4 @@
-// This file is part of 'Nostr_client_relay' 
+// This file is part of 'Nostr_client_relay'
 // Copyright (c) 2023, Space Research Software LLC, Pedro Vicente. All rights reserved.
 // See file LICENSE for full license details.
 
@@ -16,8 +16,8 @@ ContainerHome::ContainerHome() : m_row(0)
   this->setStyleClass("blue-box");
 
   //first Nostr event to "nostr.pleb.network"
-  const std::string event_id("d75d56b2141b12be96421fc5c913092cda06904208ef798b51a28f1c906bbab7");
-  const std::string def_pubkey("4ea843d54a8fdab39aa45f61f19f3ff79cc19385370f6a272dda81fade0a052b");
+  const std::string event_id("9192fcade65e0ce84413e92970d3c0d671f46438d2af90e72851fdbd142b7f62");
+  const std::string def_pubkey("a34b99f22c790c4e36b2b3c2c35a36db06226e41c692fc82b8b56ac1c540c5bd");
 
   std::string uri = relays.at(1);
   pubkey = def_pubkey;
@@ -105,6 +105,8 @@ ContainerHome::ContainerHome() : m_row(0)
 
   Wt::WText* wtext_kind = group_request->addWidget(std::make_unique<Wt::WText>("Kind"));
   wtext_kind->setMargin(10, Wt::Side::Right);
+
+//m_combo_kind
   m_combo_kind = group_request->addNew<Wt::WComboBox>();
   m_combo_kind->addItem("1 Short Text Note");
   m_combo_kind->addItem("3 Contacts");
@@ -124,7 +126,79 @@ ContainerHome::ContainerHome() : m_row(0)
   group_request->addWidget(std::make_unique<Wt::WBreak>());
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // event id 
+  // tag0
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  auto group_request_tag0 = box_right->addWidget(std::make_unique<Wt::WGroupBox>("Tags"));
+  group_request_tag0->setStyleClass("col");
+  m_combo_tag0 = group_request_tag0->addNew<Wt::WComboBox>();
+  m_combo_tag0->addItem("tag0.0");
+  m_combo_tag0->addItem("tag0.1");
+  m_combo_tag0->setCurrentIndex(0);
+  m_combo_tag0->setMargin(10, Wt::Side::Bottom);
+  m_combo_tag0->changed().connect([=]
+    {
+      //1 Short Text Note 1
+      //3 Contacts 2
+      int index = m_combo_tag0->currentIndex();
+      if (index == 1)
+      {
+        m_edit_author->setText(m_edit_pubkey->text());
+      }
+    });
+
+  group_request_tag0->addWidget(std::make_unique<Wt::WBreak>());
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  // tag1
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  auto group_request_tag1 = box_right->addWidget(std::make_unique<Wt::WGroupBox>("Tags"));
+  group_request_tag1->setStyleClass("col");
+  m_combo_tag1 = group_request_tag1->addNew<Wt::WComboBox>();
+  m_combo_tag1->addItem("tag1.0");
+  m_combo_tag1->addItem("tag1.1");
+  m_combo_tag1->setCurrentIndex(0);
+  m_combo_tag1->setMargin(10, Wt::Side::Bottom);
+  m_combo_tag1->changed().connect([=]
+    {
+      //1 Short Text Note 1
+      //3 Contacts 2
+      int index = m_combo_tag1->currentIndex();
+      if (index == 1)
+      {
+        m_edit_author->setText(m_edit_pubkey->text());
+      }
+    });
+
+  group_request_tag1->addWidget(std::make_unique<Wt::WBreak>());
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  // tag2
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  auto group_request_tag2 = box_right->addWidget(std::make_unique<Wt::WGroupBox>("Tags"));
+  group_request_tag2->setStyleClass("col");
+  m_combo_tag2 = group_request_tag2->addNew<Wt::WComboBox>();
+  m_combo_tag2->addItem("tag2.0");
+  m_combo_tag2->addItem("tag2.1");
+  m_combo_tag2->setCurrentIndex(0);
+  m_combo_tag2->setMargin(10, Wt::Side::Bottom);
+  m_combo_tag2->changed().connect([=]
+    {
+      //1 Short Text Note 1
+      //3 Contacts 2
+      int index = m_combo_tag2->currentIndex();
+      if (index == 1)
+      {
+        m_edit_author->setText(m_edit_pubkey->text());
+      }
+    });
+
+  group_request_tag2->addWidget(std::make_unique<Wt::WBreak>());
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  // event id
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   group_request->addWidget(std::make_unique<Wt::WText>("Event id"));
@@ -253,14 +327,14 @@ void ContainerHome::send_message()
   {
     std::stringstream ss;
     ss << "Opened connection: HTTP " << connection.get()->http_version << " , code " << connection.get()->status_code;
-    comm::log(ss.str());
+    // comm::log(ss.str());
 
     std::string message = m_area_message->text().toUTF8();
 
     ss.str(std::string());
     ss.clear();
     ss << "Sending: " << message;
-    comm::log(ss.str());
+    // comm::log(ss.str());
     comm::json_to_file("on_open_message.json", message);
 
     m_table_messages->clear();
