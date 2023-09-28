@@ -198,6 +198,8 @@ pnpm:nvm
 	@type -P pnpm || curl -fsSL https://get.pnpm.io/install.sh | sh - || echo "pnpm install script failed"
 	@npm i --global yarn  --force || which yarn || echo "yarn not found"
 	@npm i --global pnpm  --force || which pnpm || echo "pnpm not found"
+	@pnpm install -gD shelljs || echo "pnpm install -gD shelljs"
+	@pnpm install -gD shx || echo "pnpm install -gD shx"
 	@pnpm install reflect-metadata || echo "pnpm install reflect-metadata failed"
 	@pnpm install pino-pretty || echo "pnpm install pino-pretty failed"
 	@pnpm install @adonisjs/core/build/standalone || echo "pnpm install @adonisjs/core/build/standalone failed..."
