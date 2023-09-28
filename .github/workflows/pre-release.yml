@@ -18,7 +18,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    permissions: write-all
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     env:
       GNOSTR: "gnostr"
       GNOSTR_ACT: "gnostr-act"
@@ -70,6 +73,10 @@ jobs:
         with:
           submodules: 'true'
           set-safe-directory: 'true'
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
 
       - uses: actions-rs/toolchain@v1.0.6
         #if: ${{ !env.ACT }}
