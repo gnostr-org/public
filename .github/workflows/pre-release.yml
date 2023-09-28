@@ -93,8 +93,6 @@ jobs:
       - run: cargo install gnostr-sha256
       - run: date +%s > APP_KEY && gnostr-sha256 $(cat APP_KEY)
       - run: V=1 make
-      - run: V=1 make help
-      - run: V=1 make install
 
       - name: "Build release"
         run: |
@@ -113,7 +111,6 @@ jobs:
           title: "Pre-Release Build"
           files: |
             gnostr-*
-            *
 
       - name: Save deps
         id: cache-deps-save
