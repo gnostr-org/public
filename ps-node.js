@@ -26,6 +26,7 @@ for(var index=2; index < process.argv.length; index++ ) {
 
 // Finaly set the visible title
 process.title = t.join(' ');
+// console.log(process.title)
 
 const exec = require('child_process').exec
 
@@ -34,11 +35,11 @@ function isRunning(win, mac, linux){
 
         const plat = process.platform
 
-        console.log("plat="+plat)
+        // console.log("plat="+plat)
 
         const cmd = plat == 'win32' ? 'tasklist' : (plat == 'darwin' ? 'ps -ax | grep ' + mac : (plat == 'linux' ? 'ps -A' : ''))
 
-        console.log("cmd="+cmd)
+        // console.log("cmd="+cmd)
 
         const proc = plat == 'win32' ? win : (plat == 'darwin' ? mac : (plat == 'linux' ? linux : ''))
 
@@ -53,5 +54,10 @@ function isRunning(win, mac, linux){
     })
 }
 
-// isRunning('myprocess.exe', 'myprocess', 'myprocess').then((v) => console.log(v))
+isRunning('myprocess.exe', 'myprocess', 'myprocess').then((v) => console.log(v))
+
 isRunning('node.exe', 'node', 'node').then((v) => console.log(v))
+
+isRunning('process.title', 'process.title', 'process.title').then((v) => console.log(v))
+
+isRunning( process.title, process.title, process.title).then((v) => console.log(v))
