@@ -39,10 +39,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
-    permissions:
-      contents: write
-      pull-requests: write
-      repository-projects: write
     steps:
       - name: echo test
         #if: ${{ !env.ACT }}
