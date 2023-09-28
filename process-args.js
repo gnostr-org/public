@@ -13,7 +13,6 @@ argv.forEach((val, index) => {
 
   if (`${val}` == `-h`){
     console.log(`HELP!!`)
-  }
+  } else { console.log(`${index}: ${val}`); }
 
-  console.log(`${index}: ${val}`);
 });
