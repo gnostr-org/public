@@ -10,5 +10,10 @@ console.log(`cwd=${cwd()}`);
 
 // print process.argv
 argv.forEach((val, index) => {
+
+  if (`${val}` == `-h`){
+    console.log(`HELP!!`)
+  }
+
   console.log(`${index}: ${val}`);
 });
