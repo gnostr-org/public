@@ -101,6 +101,10 @@ jobs:
           title: "Release Build"
           files: |
             gnostr-*
+            /home/runner/.cargo/bin/gnostr-cat
+            /home/runner/.cargo/bin/gnostr-cli
+            /home/runner/.cargo/bin/gnostr-command
+            /home/runner/.cargo/bin/gnostr-legit
             /home/runner/.cargo/bin/gnostr-sha256
 
       - name: Save deps
@@ -109,7 +113,11 @@ jobs:
         if: ${{ !env.ACT }}
         with:
           path: |
-            ~/.cargo/bin
+            /home/runner/.cargo/bin/gnostr-cat
+            /home/runner/.cargo/bin/gnostr-cli
+            /home/runner/.cargo/bin/gnostr-command
+            /home/runner/.cargo/bin/gnostr-legit
+            /home/runner/.cargo/bin/gnostr-sha256
             CMakeFiles/*.dir
             ~/.rustup
           key: ${{ steps.cache-deps-restore.outputs.cache-primary-key }}
