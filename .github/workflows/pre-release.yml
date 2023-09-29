@@ -58,7 +58,7 @@ jobs:
         if: ${{ !env.ACT }}
         with:
           path: |
-            /home/runner/.cargo/bin
+            $HOME/.cargo/bin
             CMakeFiles/*.dir
             ~/.rustup
           key: ${{ runner.os }}-pre-release-deps
@@ -113,11 +113,11 @@ jobs:
           title: "Pre-Release Build"
           files: |
             gnostr-*
-            /home/runner/.cargo/bin/gnostr-cat
-            /home/runner/.cargo/bin/gnostr-cli
-            /home/runner/.cargo/bin/gnostr-command
-            /home/runner/.cargo/bin/gnostr-legit
-            /home/runner/.cargo/bin/gnostr-sha256
+            $HOME/.cargo/bin/gnostr-cat
+            $HOME/.cargo/bin/gnostr-cli
+            $HOME/.cargo/bin/gnostr-command
+            $HOME/.cargo/bin/gnostr-legit
+            $HOME/.cargo/bin/gnostr-sha256
 
       - name: Save deps
         id: cache-pre-release-deps-save
@@ -125,7 +125,7 @@ jobs:
         if: ${{ !env.ACT }}
         with:
           path: |
-            /home/runner/.cargo/bin
+            $HOME/.cargo/bin
             CMakeFiles/*.dir
             ~/.rustup
           key: ${{ steps.cache-pre-release-deps-restore.outputs.cache-primary-key }}
