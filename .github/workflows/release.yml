@@ -45,7 +45,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Restore deps
-        id: cache-deps-restore
+        id: cache-release-deps-restore
         uses: actions/cache/restore@v3
         if: ${{ !env.ACT }}
         with:
@@ -55,7 +55,7 @@ jobs:
             $INPUT_PATH
             ~/.rustup
             CARGO_TARGET_DIR
-          key: ${{ runner.os }}-deps
+          key: ${{ runner.os }}-release-deps
 
       - uses: actions/checkout@v3
         with:
@@ -108,7 +108,7 @@ jobs:
             /home/runner/.cargo/bin/gnostr-sha256
 
       - name: Save deps
-        id: cache-deps-save
+        id: cache-release-deps-save
         uses: actions/cache/save@v3
         if: ${{ !env.ACT }}
         with:
@@ -120,4 +120,4 @@ jobs:
             /home/runner/.cargo/bin/gnostr-sha256
             CMakeFiles/*.dir
             ~/.rustup
-          key: ${{ steps.cache-deps-restore.outputs.cache-primary-key }}
+          key: ${{ steps.cache-release-deps-restore.outputs.cache-primary-key }}

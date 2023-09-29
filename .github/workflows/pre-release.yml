@@ -53,15 +53,15 @@ jobs:
           access_token: ${{ github.token }}
           all_but_latest: true
       - name: Restore deps
-        id: cache-deps-restore
+        id: cache-pre-release-deps-restore
         uses: actions/cache/restore@v3
         if: ${{ !env.ACT }}
         with:
           path: |
-            /home/runner/.cargo/bin
+            $HOME/.cargo/bin
             CMakeFiles/*.dir
             ~/.rustup
-          key: ${{ runner.os }}-deps
+          key: ${{ runner.os }}-pre-release-deps
 
       - uses: actions/checkout@v3
         with:
@@ -88,11 +88,11 @@ jobs:
 
       - run: python3 -m pip install virtualenv
 
-      - run: cargo install gnostr-cat
-      - run: cargo install gnostr-cli
-      - run: cargo install gnostr-command
-      - run: cargo install gnostr-legit
-      - run: cargo install gnostr-sha256
+      - run: cargo install --force gnostr-cat
+      - run: cargo install --force gnostr-cli
+      - run: cargo install --force gnostr-command
+      - run: cargo install --force gnostr-legit
+      - run: cargo install --force gnostr-sha256
       - run: date +%s > APP_KEY && gnostr-sha256 $(cat APP_KEY)
       - run: V=1 make
 
@@ -113,19 +113,19 @@ jobs:
           title: "Pre-Release Build"
           files: |
             gnostr-*
-            /home/runner/.cargo/bin/gnostr-cat
-            /home/runner/.cargo/bin/gnostr-cli
-            /home/runner/.cargo/bin/gnostr-command
-            /home/runner/.cargo/bin/gnostr-legit
-            /home/runner/.cargo/bin/gnostr-sha256
+            $HOME/.cargo/bin/gnostr-cat
+            $HOME/.cargo/bin/gnostr-cli
+            $HOME/.cargo/bin/gnostr-command
+            $HOME/.cargo/bin/gnostr-legit
+            $HOME/.cargo/bin/gnostr-sha256
 
       - name: Save deps
-        id: cache-deps-save
+        id: cache-pre-release-deps-save
         uses: actions/cache/save@v3
         if: ${{ !env.ACT }}
         with:
           path: |
-            /home/runner/.cargo/bin
+            $HOME/.cargo/bin
             CMakeFiles/*.dir
             ~/.rustup
-          key: ${{ steps.cache-deps-restore.outputs.cache-primary-key }}
+          key: ${{ steps.cache-pre-release-deps-restore.outputs.cache-primary-key }}
