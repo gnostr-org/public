@@ -113,11 +113,11 @@ jobs:
           title: "Pre-Release Build"
           files: |
             gnostr-*
-            /home/runner/.cargo/bin/gnostr-cat
-            /home/runner/.cargo/bin/gnostr-cli
-            /home/runner/.cargo/bin/gnostr-command
-            /home/runner/.cargo/bin/gnostr-legit
-            /home/runner/.cargo/bin/gnostr-sha256
+            ~/.cargo/bin/gnostr-cat
+            ~/.cargo/bin/gnostr-cli
+            ~/.cargo/bin/gnostr-command
+            ~/.cargo/bin/gnostr-legit
+            ~/.cargo/bin/gnostr-sha256
 
       - name: Save deps
         id: cache-pre-release-deps-save
