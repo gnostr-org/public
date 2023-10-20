@@ -21,3 +21,27 @@ nostro_event.json
 
 gnostr-web
 gnostr-relays
+
+build/.adonisrc.json
+build/.env
+build/@noble/
+build/ace
+build/ace-manifest.json
+build/app/
+build/commands/
+build/config/
+build/contracts/
+build/env.js
+build/env.js.map
+build/package.json
+build/providers/
+build/public/
+build/resources/
+build/server.js
+build/server.js.map
+build/start/
+build/test.js
+build/test.js.map
+build/tests/
+build/tsconfig.tsbuildinfo
+build/yarn.lock
