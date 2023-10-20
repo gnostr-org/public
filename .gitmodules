@@ -7,3 +7,6 @@
 [submodule "pnpm"]
 	path = pnpm
 	url = https://github.com/pnpm/pnpm.git
+[submodule "view"]
+	path = view
+	url = https://github.com/gnostr-org/gnostr-webview.git
