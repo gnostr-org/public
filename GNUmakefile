@@ -386,6 +386,7 @@ test-query:
 #-include Makefile
 -include gnostr-act.mk
 -include venv.mk
+-include view.mk
 -include act.mk
 
 # vim: set noexpandtab
