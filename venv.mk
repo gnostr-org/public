@@ -72,5 +72,5 @@ ifeq (python_version_minor,10)
 endif
 endif
 
-# vim: set noexpandtab:
+# vim: set noexpandtab
 # vim: set setfiletype make
