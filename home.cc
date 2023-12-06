@@ -28,11 +28,13 @@ ContainerHome::ContainerHome() : m_row(0)
 
   auto container_top = std::make_unique<Wt::WContainerWidget>();
 
-  container_top->addWidget(std::make_unique<Wt::WText>("Relay wss://"));
+  container_top->addWidget(std::make_unique<Wt::WText>("     wss:// "));
   m_edit_uri = container_top->addWidget(std::make_unique<Wt::WLineEdit>());
   m_edit_uri->setText(uri);
-  m_edit_uri->setWidth(200);
-  m_edit_uri->setMargin(10, Wt::Side::Top | Wt::Side::Bottom | Wt::Side::Right);
+  m_edit_uri->setWidth(512);
+  m_edit_uri->setMargin(0,  Wt::Side::Left);
+  m_edit_uri->setMargin(32, Wt::Side::Top | Wt::Side::Bottom);
+  m_edit_uri->setMargin(32, Wt::Side::Right);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   //radion buttons, select EVENT or REQ
@@ -40,36 +42,67 @@ ContainerHome::ContainerHome() : m_row(0)
 
   m_button_message = std::make_shared<Wt::WButtonGroup>();
   Wt::WRadioButton* button;
-  button = container_top->addWidget(std::make_unique<Wt::WRadioButton>("Event"));
+  button = container_top->addWidget(std::make_unique<Wt::WRadioButton>("  Event"));
+  button->setMargin(20, Wt::Side::Top | Wt::Side::Bottom | Wt::Side::Right | Wt::Side::Left);
   m_button_message->addButton(button);
-  button = container_top->addWidget(std::make_unique<Wt::WRadioButton>("Request"));
-  m_button_message->addButton(button);
-  m_button_message->setSelectedButtonIndex(1);
+  //button = container_top->addWidget(std::make_unique<Wt::WRadioButton>("  Request"));
+  //button->setMargin(20, Wt::Side::Top | Wt::Side::Bottom | Wt::Side::Right | Wt::Side::Left);
+  //m_button_message->addButton(button);
+  m_button_message->setSelectedButtonIndex(0);
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  //containers for KEYROW
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  auto container_keyrow = std::make_unique<Wt::WContainerWidget>();
+
+  container_keyrow->addWidget(std::make_unique<Wt::WBreak>());
+  //container_keyrow->addWidget(std::make_unique<Wt::WText>("     wss:// "));
+  //m_edit_uri = container_keyrow->addWidget(std::make_unique<Wt::WLineEdit>());
+  //m_edit_uri->setText(uri);
+  //m_edit_uri->setWidth(512);
+  //m_edit_uri->setMargin(0,  Wt::Side::Left);
+  //m_edit_uri->setMargin(32, Wt::Side::Top | Wt::Side::Bottom);
+  //m_edit_uri->setMargin(32, Wt::Side::Right);
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //auto box_middle = container_keyrow->addLayout(std::make_unique<Wt::WVBoxLayout>());
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   //seckey
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  Wt::WText* wtext_seckey = container_top->addWidget(std::make_unique<Wt::WText>("Private Key"));
-  wtext_seckey->setMargin(20, Wt::Side::Left);
-  wtext_seckey->setMargin(10, Wt::Side::Right);
-  m_edit_seckey = container_top->addWidget(std::make_unique<Wt::WLineEdit>());
-  m_edit_seckey->setWidth(400);
+  //auto container_row = std::make_unique<Wt::WContainerWidget>();
+  Wt::WText* wtext_seckey = container_keyrow->addWidget(std::make_unique<Wt::WText>("         privkey"));
+  wtext_seckey->setMargin(128, Wt::Side::Left);
+  wtext_seckey->setMargin(20, Wt::Side::Top | Wt::Side::Bottom | Wt::Side::Right | Wt::Side::Left);
+  m_edit_seckey = container_keyrow->addWidget(std::make_unique<Wt::WLineEdit>());
+  m_edit_seckey->setWidth(512);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   //pubkey
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  Wt::WText* wtext_pubkey = container_top->addWidget(std::make_unique<Wt::WText>("Public Key"));
-  wtext_pubkey->setMargin(20, Wt::Side::Left);
-  wtext_pubkey->setMargin(10, Wt::Side::Right);
-  m_edit_pubkey = container_top->addWidget(std::make_unique<Wt::WLineEdit>());
-  m_edit_pubkey->setWidth(500);
-  m_edit_pubkey->setText(pubkey);
-  m_edit_pubkey->changed().connect([=]
-    {
-      pubkey = m_edit_pubkey->text().toUTF8();
-    });
+  //Wt::WText* wtext_pubkey = container_keyrow->addWidget(std::make_unique<Wt::WText>("pubkey"));
+  //wtext_pubkey->setMargin(20, Wt::Side::Left);
+  //wtext_pubkey->setMargin(10, Wt::Side::Right);
+  //m_edit_pubkey = container_keyrow->addWidget(std::make_unique<Wt::WLineEdit>());
+  //m_edit_pubkey->setWidth(512);
+  //m_edit_pubkey->setText(pubkey);
+  //m_edit_pubkey->changed().connect([=]
+  //  {
+  //    pubkey = m_edit_pubkey->text().toUTF8();
+  //  });
+
+
+
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   //containers for EVENT and REQ
@@ -90,61 +123,61 @@ ContainerHome::ContainerHome() : m_row(0)
   group_event->addWidget(std::make_unique<Wt::WBreak>());
 
   m_area_content = group_event->addWidget(std::make_unique<Wt::WTextArea>());
-  m_area_content->setColumns(80);
+  m_area_content->setColumns(50);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   //REQ
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  auto group_request = box_right->addWidget(std::make_unique<Wt::WGroupBox>("Request"));
-  group_request->setStyleClass("col");
+  //auto group_request = box_right->addWidget(std::make_unique<Wt::WGroupBox>("Request"));
+  //group_request->setStyleClass("col");
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   // kind
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  Wt::WText* wtext_kind = group_request->addWidget(std::make_unique<Wt::WText>("Kind"));
-  wtext_kind->setMargin(10, Wt::Side::Right);
+  //Wt::WText* wtext_kind = group_request->addWidget(std::make_unique<Wt::WText>("Kind"));
+  //wtext_kind->setMargin(10, Wt::Side::Right);
 
-//m_combo_kind
-  m_combo_kind = group_request->addNew<Wt::WComboBox>();
-  m_combo_kind->addItem("1 Short Text Note");
-  m_combo_kind->addItem("3 Contacts");
-  m_combo_kind->setCurrentIndex(0);
-  m_combo_kind->setMargin(10, Wt::Side::Bottom);
-  m_combo_kind->changed().connect([=]
-    {
-      //1 Short Text Note 1
-      //3 Contacts 2
-      int index = m_combo_kind->currentIndex();
-      if (index == 1)
-      {
-        m_edit_author->setText(m_edit_pubkey->text());
-      }
-    });
+////m_combo_kind
+  //m_combo_kind = group_request->addNew<Wt::WComboBox>();
+  //m_combo_kind->addItem("1 Short Text Note");
+  //m_combo_kind->addItem("3 Contacts");
+  //m_combo_kind->setCurrentIndex(0);
+  //m_combo_kind->setMargin(10, Wt::Side::Bottom);
+  //m_combo_kind->changed().connect([=]
+  //  {
+  //    //1 Short Text Note 1
+  //    //3 Contacts 2
+  //    int index = m_combo_kind->currentIndex();
+  //    if (index == 1)
+  //    {
+  //      m_edit_author->setText(m_edit_pubkey->text());
+  //    }
+  //  });
 
-  group_request->addWidget(std::make_unique<Wt::WBreak>());
+  //group_request->addWidget(std::make_unique<Wt::WBreak>());
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // event id 
+  // event id
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  group_request->addWidget(std::make_unique<Wt::WText>("Event id"));
-  group_request->addWidget(std::make_unique<Wt::WBreak>());
-  m_edit_event_id = group_request->addWidget(std::make_unique<Wt::WLineEdit>());
-  m_edit_event_id->setWidth(500);
-  m_edit_event_id->setInline(false);
-  m_edit_event_id->setMargin(10, Wt::Side::Bottom);
+  //group_request->addWidget(std::make_unique<Wt::WText>("Event id"));
+  //group_request->addWidget(std::make_unique<Wt::WBreak>());
+  //m_edit_event_id = group_request->addWidget(std::make_unique<Wt::WLineEdit>());
+  //m_edit_event_id->setWidth(50);
+  //m_edit_event_id->setInline(false);
+  //m_edit_event_id->setMargin(10, Wt::Side::Bottom);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   // author
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  group_request->addWidget(std::make_unique<Wt::WText>("Author"));
-  group_request->addWidget(std::make_unique<Wt::WBreak>());
-  m_edit_author = group_request->addWidget(std::make_unique<Wt::WLineEdit>());
-  m_edit_author->setWidth(500);
-  m_edit_author->setMargin(10, Wt::Side::Bottom);
+  //group_request->addWidget(std::make_unique<Wt::WText>("Author"));
+  //group_request->addWidget(std::make_unique<Wt::WBreak>());
+  //m_edit_author = group_request->addWidget(std::make_unique<Wt::WLineEdit>());
+  //m_edit_author->setWidth(50);
+  //m_edit_author->setMargin(10, Wt::Side::Bottom);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   //generated message
@@ -154,7 +187,7 @@ ContainerHome::ContainerHome() : m_row(0)
   container_message->addWidget(std::make_unique<Wt::WText>("Message"));
   m_area_message = container_message->addWidget(std::make_unique<Wt::WTextArea>());
   m_area_message->setInline(false);
-  m_area_message->setColumns(150);
+  m_area_message->setColumns(70);
   m_area_message->setHeight(200);
   container_message->addWidget(std::make_unique<Wt::WBreak>());
 
@@ -178,9 +211,14 @@ ContainerHome::ContainerHome() : m_row(0)
   button_gen->clicked().connect(this, &ContainerHome::make_message);
 
   auto container = std::make_unique<Wt::WContainerWidget>();
+
   container->addWidget(std::move(container_top));
+
+  container->addWidget(std::move(container_keyrow));
   container->addWidget(std::move(container_row));
+
   container->addWidget(std::move(container_message));
+
   this->addWidget(std::move(container));
 }
 
