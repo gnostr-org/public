@@ -39,6 +39,19 @@ std::unique_ptr<Wt::WApplication> create_application(const Wt::WEnvironment& env
 
 int main(int argc, char** argv)
 {
+
+  if (argc == 1){
+    printf("gnostr-web --http-address=0.0.0.0 --http-port=8080 --deploy-path=/web --docroot=.");
+  exit(0);
+  }
+    if (argc > 1){
+
+      if (argc > 2){
+
+      }
+    }
+
+
   try
   {
     comm::start_log();
