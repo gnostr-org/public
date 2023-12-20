@@ -1,6 +1,6 @@
 {
   "name": "gnostr-web",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "gnostr-web: publish and extract web content",
   "main": "index.mjs",
   "_comment": "https://docs.npmjs.com/cli/v10/using-npm/scripts",
