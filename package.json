@@ -1,12 +1,12 @@
 {
   "name": "gnostr-web",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "gnostr-web: publish and extract web content",
   "main": "index.mjs",
   "_comment": "https://docs.npmjs.com/cli/v10/using-npm/scripts",
   "private": true,
   "scripts": {
-    "start": "cd build && node server.js",
+    "start": "install .env ./build && cd build && node server.js",
     "install-all": "npm run install-gnostr-cat && npm run install-jq && npm run install-curl && npm run install-python3 && npm run install-cargo",
     "install-cargo": "type -P cargo || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --no-modify-path --default-toolchain stable --profile default & . $HOME/.cargo/env",
     "install-gnostr-cat": "$(which cargo || npm run install-cargo) install gnostr-cat",
