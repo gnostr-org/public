@@ -88,13 +88,13 @@ jobs:
 
       - run: python3 -m pip install virtualenv
 
-      - run: cargo install --force gnostr-cat
-      - run: cargo install --force gnostr-cli
-      - run: cargo install --force gnostr-command
-      - run: cargo install --force gnostr-legit
-      - run: cargo install --force gnostr-sha256
-      - run: date +%s > APP_KEY && gnostr-sha256 $(cat APP_KEY)
-      - run: V=1 make
+        #- run: cargo install --force gnostr-cat
+        #- run: cargo install --force gnostr-cli
+        #- run: cargo install --force gnostr-command
+        #- run: cargo install --force gnostr-legit
+        #- run: cargo install --force gnostr-sha256
+        #- run: date +%s > APP_KEY && gnostr-sha256 $(cat APP_KEY)
+      - run: V=1 make install
 
       - name: "Build release"
         run: |
